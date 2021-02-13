@@ -28,7 +28,7 @@ sudo apt install --install-recommends libgnutls30:i386 libldap-2.4-2:i386 libgpg
 sudo usermod -aG plugdev $USER
 
 flatpak update -y
-flatpak install -y telegram discord spotify bitwarden lagrange
+flatpak install --user -y telegram discord spotify bitwarden lagrange
 flatpak update -y
 
 sudo apt autoremove -y
