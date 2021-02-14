@@ -28,7 +28,7 @@ sudo dpkg -i /tmp/mc.deb
 sudo apt install -fy
 rm /tmp/mc.deb
 
-sudo apt install --install-recommends libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libsqlite3-0:i386 lutris libvulkan1 libvulkan1:i386 steam-installer winehq-staging openjdk-8-jre butt pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gnome-tweaks element-desktop -y
+sudo apt install --install-recommends libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libsqlite3-0:i386 lutris libvulkan1 libvulkan1:i386 steam-installer winehq-staging openjdk-8-jre butt pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gnome-tweaks element-desktop folder-color -y
 
 sudo usermod -aG plugdev $USER
 
