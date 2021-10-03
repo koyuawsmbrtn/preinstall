@@ -4,60 +4,74 @@ echo "koyu's little preinstall script"
 echo "Version 1.0"
 echo -e
 
-# PPAs
+###################################################
+###################################################
+###     This script is made to be modular.      ###
+###                                             ###
+### Just delete the sections you don't need and ###
+###             make it your own.               ###
+###################################################
+###################################################
 
+# PPAs
 sudo add-apt-repository ppa:mumble/release -y
 
 # Upgrade system
-
 sudo apt update && sudo apt dist-upgrade -y
 
 # Third-party DEB files
-
+# Discord
 wget -O /tmp/discord.deb -c https://discord.com/api/download/development?platform=linux
 sudo dpkg -i /tmp/discord.deb
 sudo apt install -fy
 rm /tmp/discord.deb
 
+# Dropbox
 wget -O /tmp/dropbox.deb -c https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb
 sudo dpkg -i /tmp/dropbox.deb
 sudo apt install -fy
 rm /tmp/dropbox.deb
 nautilus --quit
 
+# Visual Studio Code
 wget -O /tmp/code.deb -c "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
 sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
+# Google Chrome
 wget -O /tmp/chrome.deb -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i /tmp/chrome.deb
 sudo apt install -fy
 rm /tmp/chrome.deb
 
+# Enable dark mode on Chrome
+chmod +x chrome-enable-dark-mode.sh
+./chrome-enable-dark-mode.sh
+
+# Microsoft Teams
 wget -O /tmp/teams.deb -c https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders/teams-insiders_1.4.00.26453_amd64.deb
 sudo dpkg -i /tmp/teams.deb
 sudo apt install -fy
 rm /tmp/teams.deb
 
 # Software found in repositories
-
 sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras -y
 
 # Snaps
 # Double-refresh if the device hasn't been seeded yet
-
 sudo snap refresh
 sleep 3
 sudo snap refresh
 
 # Continue installing snaps
-
+# Using Spotify Edge to fix album covers in notification bar
 sudo snap install spotify --edge
+
+# Install all the other snaps
 sudo snap install telegram bitwarden p3x-onenote skype
 
 # MS Fonts
-
 mkdir -p ~/.fonts
 wget -qO- http://plasmasturm.org/dl/vistafonts-installer | bash
 
@@ -66,7 +80,6 @@ sudo apt clean
 sudo apt autoremove -y
 
 # Printing post-install steps
-
 echo -e
 echo "Done!"
 echo -e
