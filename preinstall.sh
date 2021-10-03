@@ -1,16 +1,23 @@
 #!/bin/bash
 
-sudo add-apt-repository ppa:lutris-team/lutris -y
-sudo add-apt-repository ppa:graphics-drivers/ppa -y
-wget -nc https://dl.winehq.org/wine-builds/winehq.key -O - | sudo apt-key add -
-sudo add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' -y
+echo "koyu's little preinstall script"
+echo "Version 1.0"
+echo -e
+
+# PPAs
+
+sudo add-apt-repository ppa:mumble/release -y
+
+# Upgrade system
 
 sudo apt update && sudo apt dist-upgrade -y
 
-sudo apt install -y wget apt-transport-https
-sudo wget -O /usr/share/keyrings/riot-im-archive-keyring.gpg https://packages.riot.im/debian/riot-im-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/riot-im-archive-keyring.gpg] https://packages.riot.im/debian/ default main" | sudo tee /etc/apt/sources.list.d/riot-im.list
-sudo apt update
+# Third-party DEB files
+
+wget -O /tmp/discord.deb -c https://discord.com/api/download/development?platform=linux
+sudo dpkg -i /tmp/discord.deb
+sudo apt install -fy
+rm /tmp/discord.deb
 
 wget -O /tmp/dropbox.deb -c https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb
 sudo dpkg -i /tmp/dropbox.deb
@@ -23,18 +30,54 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
-wget -O /tmp/mc.deb -c https://launcher.mojang.com/download/Minecraft.deb
-sudo dpkg -i /tmp/mc.deb
+wget -O /tmp/chrome.deb -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i /tmp/chrome.deb
 sudo apt install -fy
-rm /tmp/mc.deb
+rm /tmp/chrome.deb
 
-sudo apt install --install-recommends libgnutls30:i386 libldap-2.4-2:i386 libgpg-error0:i386 libsqlite3-0:i386 lutris libvulkan1 libvulkan1:i386 steam-installer winehq-staging openjdk-8-jre butt pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gnome-tweaks element-desktop folder-color -y
+wget -O /tmp/teams.deb -c https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders/teams-insiders_1.4.00.26453_amd64.deb
+sudo dpkg -i /tmp/teams.deb
+sudo apt install -fy
+rm /tmp/teams.deb
 
-sudo usermod -aG plugdev $USER
+# Software found in repositories
 
-flatpak update -y
-flatpak install --user -y telegram discord spotify bitwarden lagrange
-flatpak update -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras -y
 
-sudo apt autoremove -y
+# Snaps
+# Double-refresh if the device hasn't been seeded yet
+
+sudo snap refresh
+sleep 3
+sudo snap refresh
+
+# Continue installing snaps
+
+sudo snap install spotify --edge
+sudo snap install telegram bitwarden p3x-onenote skype
+
+# MS Fonts
+
+mkdir -p ~/.fonts
+wget -qO- http://plasmasturm.org/dl/vistafonts-installer | bash
+
+# Cleanup
 sudo apt clean
+sudo apt autoremove -y
+
+# Printing post-install steps
+
+echo -e
+echo "Done!"
+echo -e
+echo "Post-Install steps:"
+echo " - Reboot system"
+echo " - Activate Livepatch if not done already"
+echo " - Install necessary drivers like OpenRazer+Polychromatic or latest Nvidia (if you need them)"
+echo " - Install game launchers like Lutris or Steam and compatibility layers for games like Wine if needed"
+echo " - Reboot system again if you installed drivers"
+echo " - Authorize and set up applications"
+echo -e
+echo "To install Nvidia drivers refer to this manual: https://github.com/lutris/docs/blob/master/InstallingDrivers.md#nvidia"
+echo -e
+echo "Thanks for using my script! Have a great day and a cookie 🍪️"

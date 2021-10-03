@@ -1,3 +1,3 @@
 # preinstall.sh
 
-Script I use to preinstall my favourite software on freshly installed Pop!_OS installations. Note this script only works on Pop!_OS and nothing else!
+Script I use to preinstall my favourite software on freshly installed Ubuntu installations. Note this script only works on Ubuntu and nothing else!
