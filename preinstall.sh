@@ -84,7 +84,7 @@ sudo snap refresh
 sudo snap install spotify --edge
 
 # Install all the other snaps
-sudo snap install telegram-desktop bitwarden p3x-onenote skype
+sudo snap install telegram-desktop bitwarden joplin-desktop skype
 
 # MS Fonts
 mkdir -p ~/.fonts
