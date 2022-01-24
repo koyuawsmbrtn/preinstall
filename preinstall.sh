@@ -35,12 +35,6 @@ sudo add-apt-repository ppa:mumble/release -y
 sudo apt update && sudo apt dist-upgrade -y
 
 # Third-party DEB files
-# Discord
-wget -O /tmp/discord.deb -c https://discord.com/api/download/development?platform=linux
-sudo dpkg -i /tmp/discord.deb
-sudo apt install -fy
-rm /tmp/discord.deb
-
 # Dropbox
 wget -O /tmp/dropbox.deb -c https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb
 sudo dpkg -i /tmp/dropbox.deb
@@ -78,7 +72,7 @@ sudo snap refresh
 sudo snap install spotify --edge
 
 # Install all the other snaps
-sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders
+sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders discord
 
 # MS Fonts
 mkdir -p ~/.fonts
