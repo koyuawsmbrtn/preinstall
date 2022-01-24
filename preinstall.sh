@@ -64,12 +64,6 @@ rm /tmp/chrome.deb
 chmod +x chrome-enable-dark-mode.sh
 ./chrome-enable-dark-mode.sh
 
-# Microsoft Teams
-wget -O /tmp/teams.deb -c https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams-insiders/teams-insiders_1.4.00.26453_amd64.deb
-sudo dpkg -i /tmp/teams.deb
-sudo apt install -fy
-rm /tmp/teams.deb
-
 # Software found in repositories
 sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras -y
 
@@ -84,7 +78,7 @@ sudo snap refresh
 sudo snap install spotify --edge
 
 # Install all the other snaps
-sudo snap install telegram-desktop bitwarden joplin-desktop skype
+sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders
 
 # MS Fonts
 mkdir -p ~/.fonts
