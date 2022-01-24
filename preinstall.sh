@@ -28,8 +28,13 @@ echo -e
 ###################################################
 ###################################################
 
-# PPAs
+# Dependencies
+sudo apt install -y wget apt-transport-https curl
+
+# Third-party repositories
 sudo add-apt-repository ppa:mumble/release -y
+sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
 
 # Upgrade system
 sudo apt update && sudo apt dist-upgrade -y
@@ -54,6 +59,9 @@ sudo dpkg -i /tmp/chrome.deb
 sudo apt install -fy
 rm /tmp/chrome.deb
 
+# Element
+sudo apt install -y element-desktop
+
 # Enable dark mode on Chrome
 chmod +x chrome-enable-dark-mode.sh
 ./chrome-enable-dark-mode.sh
@@ -72,7 +80,7 @@ sudo snap refresh
 sudo snap install spotify --edge
 
 # Install all the other snaps
-sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders discord
+sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders discord mattermost-desktop
 
 # MS Fonts
 mkdir -p ~/.fonts
