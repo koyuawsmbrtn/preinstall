@@ -69,6 +69,10 @@ chmod +x chrome-enable-dark-mode.sh
 # Software found in repositories
 sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras -y
 
+# Amfora
+sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
+sudo chmod +x /usr/bin/amfora
+
 # Snaps
 # Double-refresh if the device hasn't been seeded yet
 sudo snap refresh
