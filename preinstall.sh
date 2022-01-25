@@ -59,6 +59,12 @@ sudo dpkg -i /tmp/chrome.deb
 sudo apt install -fy
 rm /tmp/chrome.deb
 
+# Mullvad
+wget -O /tmp/mullvad.deb -c https://mullvad.net/download/app/deb/latest/
+sudo dpkg -i /tmp/mullvad.deb
+sudo apt install -fy
+rm /tmp/mullvad.deb
+
 # Element
 sudo apt install -y element-desktop
 
