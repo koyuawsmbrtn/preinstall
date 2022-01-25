@@ -53,12 +53,6 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
-# Google Chrome
-wget -O /tmp/chrome.deb -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i /tmp/chrome.deb
-sudo apt install -fy
-rm /tmp/chrome.deb
-
 # Mullvad
 wget -O /tmp/mullvad.deb -c https://mullvad.net/download/app/deb/latest/
 sudo dpkg -i /tmp/mullvad.deb
