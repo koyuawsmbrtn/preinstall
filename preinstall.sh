@@ -76,7 +76,8 @@ sudo chmod +x /usr/bin/amfora
 # Flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak update -y
-flatpak install -y org.telegram.desktop com.bitwarden.desktop net.cozic.joplin_desktop com.microsoft.Teams com.discordapp.Discord com.mattermost.Desktop
+flatpak install -y org.telegram.desktop com.bitwarden.desktop net.cozic.joplin_desktop com.microsoft.Teams com.discordapp.Discord com.mattermost.Desktop com.spotify.Client
+
 # MS Fonts
 mkdir -p ~/.fonts
 wget -qO- http://plasmasturm.org/dl/vistafonts-installer | bash
