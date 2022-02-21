@@ -59,7 +59,7 @@ chmod +x chrome-enable-dark-mode.sh
 ./chrome-enable-dark-mode.sh
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras mlocate flatpak -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras mlocate flatpak libreoffice-style-breeze -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
