@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#    Copyright (C) 2021 koyu
+#    Copyright (C) 2021-2022 koyu
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -54,21 +54,25 @@ sudo dpkg -i /tmp/mullvad.deb
 sudo apt install -fy
 rm /tmp/mullvad.deb
 
-# Enable dark mode on Chrome
-chmod +x chrome-enable-dark-mode.sh
-./chrome-enable-dark-mode.sh
-
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc mumble weechat git gparted curl ubuntu-restricted-extras mlocate flatpak libreoffice-style-breeze -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
-# Flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak update -y
-flatpak install -y org.telegram.desktop com.bitwarden.desktop net.cozic.joplin_desktop com.microsoft.Teams com.discordapp.Discord com.mattermost.Desktop com.spotify.Client fi.skyjake.Lagrange com.github.iwalton3.jellyfin-media-player
+# Snaps
+# Double-refresh if the device hasn't been seeded yet
+sudo snap refresh
+sleep 3
+sudo snap refresh
+
+# Continue installing snaps
+# Using Spotify Edge to fix album covers in notification bar
+sudo snap install spotify --edge
+
+# Install all the other snaps
+sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders discord mattermost-desktop
 
 # MS Fonts
 mkdir -p ~/.fonts
