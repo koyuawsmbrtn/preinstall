@@ -35,13 +35,6 @@ sudo apt install -y wget apt-transport-https curl
 sudo apt update && sudo apt dist-upgrade -y
 
 # Third-party DEB files
-# Dropbox
-wget -O /tmp/dropbox.deb -c https://linux.dropbox.com/packages/ubuntu/dropbox_2020.03.04_amd64.deb
-sudo dpkg -i /tmp/dropbox.deb
-sudo apt install -fy
-rm /tmp/dropbox.deb
-nautilus --quit
-
 # Visual Studio Code
 wget -O /tmp/code.deb -c "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
 sudo dpkg -i /tmp/code.deb
@@ -72,7 +65,7 @@ sudo snap refresh
 sudo snap install spotify --edge
 
 # Install all the other snaps
-sudo snap install telegram-desktop bitwarden joplin-desktop skype teams-insiders discord mattermost-desktop
+sudo snap install telegram-desktop bitwarden p3x-onenote skype teams-insiders discord mattermost-desktop
 
 # MS Fonts
 mkdir -p ~/.fonts
