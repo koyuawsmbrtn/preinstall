@@ -55,9 +55,10 @@ sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amf
 sudo chmod +x /usr/bin/amfora
 
 # Flatpaks
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak update -y
-flatpak install -y org.telegram.desktop com.bitwarden.desktop com.microsoft.Teams com.discordapp.Discord com.spotify.Client
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
+flatpak --user update -y
+flatpak install -y org.telegram.desktop com.bitwarden.desktop com.microsoft.Teams com.discordapp.Discord com.spotify.Client --user
+flatpak --user update -y
 
 # MS Fonts
 mkdir -p ~/.fonts
