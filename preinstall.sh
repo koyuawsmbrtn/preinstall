@@ -48,24 +48,16 @@ sudo apt install -fy
 rm /tmp/mullvad.deb
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate flatpak -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
-# Snaps
-# Double-refresh if the device hasn't been seeded yet
-sudo snap refresh
-sleep 3
-sudo snap refresh
-
-# Continue installing snaps
-# Using Spotify Edge to fix album covers in notification bar
-sudo snap install spotify --edge
-
-# Install all the other snaps
-sudo snap install telegram-desktop bitwarden p3x-onenote skype teams-insiders discord mattermost-desktop
+# Flatpaks
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak update -y
+flatpak install -y org.telegram.desktop com.bitwarden.desktop com.microsoft.Teams com.discordapp.Discord com.spotify.Client
 
 # MS Fonts
 mkdir -p ~/.fonts
