@@ -51,6 +51,12 @@ sudo dpkg -i /tmp/mullvad.deb
 sudo apt install -fy
 rm /tmp/mullvad.deb
 
+# OneNote
+wget -O /tmp/onenote.deb -c https://github.com/patrikx3/onenote/releases/download/v2022.4.114/p3x-onenote_2022.4.114_amd64.deb
+sudo dpkg -i /tmp/onenote.deb
+sudo apt install -fy
+rm /tmp/onenote.deb
+
 # Software found in repositories
 sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate flatpak transmission-gtk -y
 
