@@ -31,6 +31,10 @@ echo -e
 # Dependencies
 sudo apt install -y wget apt-transport-https curl
 
+# yt-dlp
+sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+sudo chmod a+rx /usr/local/bin/yt-dlp
+
 # Upgrade system
 sudo apt update && sudo apt dist-upgrade -y
 
