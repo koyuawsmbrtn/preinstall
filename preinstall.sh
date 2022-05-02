@@ -73,6 +73,13 @@ flatpak --user update -y
 # MS Fonts
 mkdir -p ~/.fonts
 wget -qO- http://plasmasturm.org/dl/vistafonts-installer | bash
+cat <<EOT > ~/.fonts.conf
+<!-- disable embedded bitmaps in fonts to fix Calibri, Cambria, etc. -->
+<match target="font">
+   <edit mode="assign" name="embeddedbitmap"><bool>false</bool></edit>
+</match>
+EOT
+sudo fc-cache -v -f
 
 # Cleanup
 sudo apt clean
