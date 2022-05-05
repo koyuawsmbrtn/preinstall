@@ -57,6 +57,12 @@ sudo dpkg -i /tmp/onenote.deb
 sudo apt install -fy
 rm /tmp/onenote.deb
 
+# AppImage Launcher
+wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
+sudo dpkg -i /tmp/appimagelauncher.deb
+sudo apt install -fy
+rm /tmp/appimagelauncher.deb
+
 # Software found in repositories
 sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate flatpak transmission-gtk p7zip -y
 
