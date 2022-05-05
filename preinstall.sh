@@ -74,7 +74,7 @@ flatpak --user update -y
 mkdir -p ~/.fonts
 cd ~/.fonts
 wget https://content.koyu.space/fonts.7z
-7z e fonts.7z
+7z e fonts.7z -aoa
 rm -f fonts.7z
 cat <<EOT > ~/.fonts.conf
 <!-- disable embedded bitmaps in fonts to fix Calibri, Cambria, etc. -->
