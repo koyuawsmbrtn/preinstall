@@ -73,7 +73,7 @@ sudo chmod +x /usr/bin/amfora
 # Flatpaks
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
 flatpak --user update -y
-flatpak install -y org.telegram.desktop com.bitwarden.desktop com.microsoft.Teams com.discordapp.Discord com.spotify.Client --user
+flatpak install -y org.telegram.desktop com.bitwarden.desktop com.microsoft.Teams com.discordapp.Discord com.spotify.Client org.zulip.Zulip --user
 flatpak --user update -y
 
 # MS Fonts
