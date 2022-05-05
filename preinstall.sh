@@ -63,6 +63,12 @@ sudo dpkg -i /tmp/appimagelauncher.deb
 sudo apt install -fy
 rm /tmp/appimagelauncher.deb
 
+# TeamViewer
+wget -O /tmp/teamviewer.deb -c https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+sudo dpkg -i /tmp/teamviewer.deb
+sudo apt install -fy
+rm /tmp/teamviewer.deb
+
 # Software found in repositories
 sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate flatpak transmission-gtk p7zip libreoffice-style-breeze fonts-firacode hugo ffmpeg -y
 
