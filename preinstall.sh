@@ -51,12 +51,6 @@ sudo dpkg -i /tmp/mullvad.deb
 sudo apt install -fy
 rm /tmp/mullvad.deb
 
-# OneNote
-wget -O /tmp/onenote.deb -c https://github.com/patrikx3/onenote/releases/download/v2022.4.114/p3x-onenote_2022.4.114_amd64.deb
-sudo dpkg -i /tmp/onenote.deb
-sudo apt install -fy
-rm /tmp/onenote.deb
-
 # AppImage Launcher
 wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
 sudo dpkg -i /tmp/appimagelauncher.deb
@@ -70,17 +64,19 @@ sudo apt install -fy
 rm /tmp/teamviewer.deb
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate flatpak transmission-gtk p7zip libreoffice-style-breeze fonts-firacode hugo ffmpeg -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip libreoffice-style-breeze fonts-firacode hugo ffmpeg rclone -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
-# Flatpaks
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
-flatpak --user update -y
-flatpak install -y org.telegram.desktop com.bitwarden.desktop com.microsoft.Teams com.discordapp.Discord com.spotify.Client org.zulip.Zulip --user
-flatpak --user update -y
+# Snaps
+# First refresh snapd twice to seed the device
+sudo snap refresh
+sleep 3
+sudo snap refresh
+# Now install the actual Snaps
+sudo snap install bitwarden spotify telegram-desktop teams-insiders zulip graphmaker bbzcloud p3x-onenote
 
 # MS Fonts
 mkdir -p ~/.fonts
