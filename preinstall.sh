@@ -45,12 +45,6 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
-# Mullvad
-wget -O /tmp/mullvad.deb -c https://mullvad.net/download/app/deb/latest/
-sudo dpkg -i /tmp/mullvad.deb
-sudo apt install -fy
-rm /tmp/mullvad.deb
-
 # AppImage Launcher
 wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
 sudo dpkg -i /tmp/appimagelauncher.deb
