@@ -70,7 +70,7 @@ sudo snap refresh
 sleep 3
 sudo snap refresh
 # Now install the actual Snaps
-sudo snap install bitwarden spotify telegram-desktop teams-insiders zulip graphmaker bbzcloud p3x-onenote postman
+sudo snap install bitwarden spotify telegram-desktop teams-insiders zulip graphmaker bbzcloud p3x-onenote postman whatsie
 
 # MS Fonts
 mkdir -p ~/.fonts
