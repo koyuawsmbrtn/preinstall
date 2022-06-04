@@ -50,6 +50,7 @@ wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLaun
 sudo dpkg -i /tmp/appimagelauncher.deb
 sudo apt install -fy
 rm /tmp/appimagelauncher.deb
+sudo apt install -y libfuse2
 
 # TeamViewer
 wget -O /tmp/teamviewer.deb -c https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
