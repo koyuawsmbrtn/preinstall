@@ -59,7 +59,7 @@ sudo apt install -fy
 rm /tmp/teamviewer.deb
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip libreoffice-style-breeze fonts-firacode hugo ffmpeg rclone dino-im flatpak -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip libreoffice-style-breeze fonts-firacode hugo ffmpeg rclone dino-im flatpak zsh -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
@@ -68,7 +68,7 @@ sudo chmod +x /usr/bin/amfora
 # Flatpaks
 flatpak --user update -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
-flatpak install -y com.bitwarden.desktop com.spotify.Client org.telegram.desktop com.microsoft.Teams org.zulip.Zulip net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop org.signal.Signal --user
+flatpak install -y com.bitwarden.desktop com.spotify.Client com.microsoft.Teams org.zulip.Zulip net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord im.riot.Riot --user
 flatpak --user update -y
 
 # MS Fonts
