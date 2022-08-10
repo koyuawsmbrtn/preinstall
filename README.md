@@ -1,3 +1,3 @@
 # preinstall.sh
 
-Script I use to preinstall my favourite software on freshly installed Linux installations. This script only works with Ubuntu!
+Scripts I use to preinstall my favourite software on freshly installed Linux installations. These scripts only works with Ubuntu or Ubuntu-based distributions!
