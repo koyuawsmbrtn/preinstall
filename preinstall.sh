@@ -68,7 +68,7 @@ sudo chmod +x /usr/bin/amfora
 # Flatpaks
 flatpak --user update -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
-flatpak install -y com.bitwarden.desktop com.spotify.Client com.microsoft.Teams net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord im.riot.Riot --user
+flatpak install -y com.bitwarden.desktop com.spotify.Client com.microsoft.Teams net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord im.riot.Riot org.telegram.desktop --user
 flatpak --user update -y
 
 # MS Fonts
