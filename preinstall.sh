@@ -59,16 +59,22 @@ sudo apt install -fy
 rm /tmp/teamviewer.deb
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg rclone dino-im flatpak zsh mailcap -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg rclone dino-im flatpak zsh mailcap rclone -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
+# Element
+sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
+sudo apt update
+sudo apt install -y element-desktop
+
 # Flatpaks
 flatpak --user update -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
-flatpak install -y com.bitwarden.desktop com.spotify.Client com.microsoft.Teams net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord im.riot.Riot org.telegram.desktop --user
+flatpak install -y com.bitwarden.desktop com.spotify.Client com.microsoft.Teams net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord com.microsoft.Edge --user
 flatpak --user update -y
 
 # MS Fonts
