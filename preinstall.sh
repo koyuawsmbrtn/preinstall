@@ -45,6 +45,25 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
+# Google Chrome
+wget -O /tmp/chrome.deb -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i /tmp/chrome.deb
+sudo apt install -fy
+rm /tmp/chrome.deb
+
+# Lutris
+wget -O /tmp/lutris.deb -c https://github.com/lutris/lutris/releases/download/v0.5.11/lutris_0.5.11_all.deb
+sudo dpkg -i /tmp/lutris.deb
+sudo apt install -fy
+rm /tmp/lutris.deb
+
+# WineHQ
+sudo mkdir -pm755 /etc/apt/keyrings
+sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+sudo apt update
+sudo apt install --install-recommends winehq-staging -y
+
 # AppImage Launcher
 wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
 sudo dpkg -i /tmp/appimagelauncher.deb
@@ -52,14 +71,8 @@ sudo apt install -fy
 rm /tmp/appimagelauncher.deb
 sudo apt install -y libfuse2
 
-# TeamViewer
-wget -O /tmp/teamviewer.deb -c https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
-sudo dpkg -i /tmp/teamviewer.deb
-sudo apt install -fy
-rm /tmp/teamviewer.deb
-
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg rclone dino-im flatpak zsh mailcap rclone -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg dino-im zsh mailcap steam -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
@@ -71,11 +84,11 @@ echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https:/
 sudo apt update
 sudo apt install -y element-desktop
 
-# Flatpaks
-flatpak --user update -y
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo --user
-flatpak install -y com.bitwarden.desktop com.spotify.Client com.microsoft.Teams net.cozic.joplin_desktop com.getpostman.Postman io.github.mimbrero.WhatsAppDesktop com.discordapp.Discord com.microsoft.Edge --user
-flatpak --user update -y
+# Snaps
+sudo snap refresh
+sleep 3
+sudo snap refresh
+sudo snap install bitwarden spotify discord
 
 # MS Fonts
 mkdir -p ~/.fonts
