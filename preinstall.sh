@@ -88,7 +88,7 @@ sudo apt install element-desktop -y
 sudo snap refresh
 sleep 3
 sudo snap refresh
-sudo snap install bitwarden spotify telegram-desktop joplin-desktop
+sudo snap install bitwarden spotify telegram-desktop joplin-desktop bbzcloud
 
 # Autostart
 cp -r autostart ~/.config
