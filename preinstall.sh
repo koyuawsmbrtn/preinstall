@@ -51,12 +51,6 @@ sudo dpkg -i /tmp/chrome.deb
 sudo apt install -fy
 rm /tmp/chrome.deb
 
-# Lutris
-wget -O /tmp/lutris.deb -c https://github.com/lutris/lutris/releases/download/v0.5.11/lutris_0.5.11_all.deb
-sudo dpkg -i /tmp/lutris.deb
-sudo apt install -fy
-rm /tmp/lutris.deb
-
 # Discord
 wget -O /tmp/discord.deb -c "https://discord.com/api/download?platform=linux&format=deb"
 sudo dpkg -i /tmp/discord.deb
@@ -78,39 +72,23 @@ rm /tmp/appimagelauncher.deb
 sudo apt install -y libfuse2
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap steam nextcloud-desktop -y
+sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap steam -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
-# Signal
-wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
-cat signal-desktop-keyring.gpg | sudo tee -a /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
-echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
+# Element
+sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
 sudo apt update
-sudo apt install signal-desktop -y
-sudo cp autostart/signal-tray.desktop /usr/share/applications
+sudo apt install element-desktop -y
 
 # Snaps
 sudo snap refresh
 sleep 3
 sudo snap refresh
-sudo snap install bitwarden spotify
-
-# MS Fonts
-mkdir -p ~/.fonts
-cd ~/.fonts
-wget https://content.koyu.space/fonts.7z
-7z e fonts.7z -aoa
-rm -f fonts.7z
-cat <<EOT > ~/.fonts.conf
-<!-- disable embedded bitmaps in fonts to fix Calibri, Cambria, etc. -->
-<match target="font">
-   <edit mode="assign" name="embeddedbitmap"><bool>false</bool></edit>
-</match>
-EOT
-sudo fc-cache -v -f
+sudo snap install bitwarden spotify telegram-desktop
 
 # Autostart
 cp -r autostart ~/.config
