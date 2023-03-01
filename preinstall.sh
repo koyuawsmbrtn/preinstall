@@ -45,12 +45,6 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
-# Google Chrome
-wget -O /tmp/chrome.deb -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i /tmp/chrome.deb
-sudo apt install -fy
-rm /tmp/chrome.deb
-
 # Discord
 wget -O /tmp/discord.deb -c "https://discord.com/api/download?platform=linux&format=deb"
 sudo dpkg -i /tmp/discord.deb
