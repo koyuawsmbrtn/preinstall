@@ -72,11 +72,11 @@ sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic g
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
-# Element
-sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
-sudo apt update
-sudo apt install element-desktop -y
+# Cinny
+wget -O /tmp/cinny.deb -c https://github.com/cinnyapp/cinny-desktop/releases/download/v2.2.6/Cinny_desktop-x86_64.deb
+sudo dpkg -i /tmp/cinny.deb
+sudo apt install -fy
+rm /tmp/cinny.deb
 
 # Snaps
 sudo snap refresh
