@@ -78,11 +78,16 @@ sudo dpkg -i /tmp/cinny.deb
 sudo apt install -fy
 rm /tmp/cinny.deb
 
+# Notion
+echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
+sudo apt update
+sudo apt install notion-app -y
+
 # Snaps
 sudo snap refresh
 sleep 3
 sudo snap refresh
-sudo snap install bitwarden spotify joplin-desktop bbzcloud
+sudo snap install bitwarden spotify
 
 # Autostart
 cp -r autostart ~/.config
