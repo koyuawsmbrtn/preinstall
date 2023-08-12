@@ -52,11 +52,14 @@ sudo apt install -fy
 rm /tmp/discord.deb
 
 # WineHQ
+sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
 sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
-sudo apt update
-sudo apt install --install-recommends winehq-staging -y
+sudo rm /etc/apt/sources.list.d/winehq*
+codename=$(lsb_release -sc)
+sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/ubuntu/dists/${codename}/winehq-${codename}.sources"
+sudo apt -y update
+sudo apt install --install-recommends wine-staging -y
 
 # AppImage Launcher
 wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
@@ -66,7 +69,7 @@ rm /tmp/appimagelauncher.deb
 sudo apt install -y libfuse2
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-8-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl ubuntu-restricted-extras mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap steam -y
+sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap -y
 
 # Amfora
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
@@ -75,19 +78,36 @@ sudo chmod +x /usr/bin/amfora
 # Cinny
 wget -O /tmp/cinny.deb -c https://github.com/cinnyapp/cinny-desktop/releases/download/v2.2.6/Cinny_desktop-x86_64.deb
 sudo dpkg -i /tmp/cinny.deb
-sudo apt install -fy
 rm /tmp/cinny.deb
+# Workaround for libssl.so.1.1
+wget -O /tmp/libssl.deb http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.1_1.1.1n-0+deb11u5_amd64.deb
+sudo dpkg -i /tmp/libssl.deb
+sudo apt install -fy
+sudo rm /tmp/libssl.deb
 
 # Notion
 echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
 sudo apt update
 sudo apt install notion-app -y
 
-# Snaps
-sudo snap refresh
-sleep 3
-sudo snap refresh
-sudo snap install bitwarden spotify
+# Snaps or Flatpaks
+if ! command -v snap &> /dev/null
+then
+  if ! command -v flatpak &> /dev/null
+  then
+    echo "Flatpak not installed. Installing..."
+    sudo apt install flatpak -y
+  fi
+  flatpak update -y
+  sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  flatpak update -y
+  flatpak install bitwarden spotify -y
+else
+  sudo snap refresh
+  sleep 3
+  sudo snap refresh
+  sudo snap install bitwarden spotify
+fi
 
 # Autostart
 cp -r autostart ~/.config
