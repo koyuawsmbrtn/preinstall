@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#    Copyright (C) 2021-2022 koyu
+#    Copyright (C) 2021-2023 koyu
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -75,15 +75,11 @@ sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic 
 sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
 sudo chmod +x /usr/bin/amfora
 
-# Cinny
-wget -O /tmp/cinny.deb -c https://github.com/cinnyapp/cinny-desktop/releases/download/v2.2.6/Cinny_desktop-x86_64.deb
-sudo dpkg -i /tmp/cinny.deb
-rm /tmp/cinny.deb
-# Workaround for libssl.so.1.1
-wget -O /tmp/libssl.deb http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.1_1.1.1n-0+deb11u5_amd64.deb
-sudo dpkg -i /tmp/libssl.deb
-sudo apt install -fy
-sudo rm /tmp/libssl.deb
+# Element
+sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
+sudo apt update
+sudo apt install element-desktop -y
 
 # Notion
 echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
@@ -101,12 +97,12 @@ then
   flatpak update -y
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak update -y
-  flatpak install bitwarden spotify -y
+  flatpak install bitwarden -y
 else
   sudo snap refresh
   sleep 3
   sudo snap refresh
-  sudo snap install bitwarden spotify
+  sudo snap install bitwarden
 fi
 
 # Autostart
