@@ -35,6 +35,10 @@ sudo apt install -y wget apt-transport-https curl
 sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
 sudo chmod a+rx /usr/local/bin/yt-dlp
 
+# Amfora
+sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
+sudo chmod +x /usr/bin/amfora
+
 # Upgrade system
 sudo apt update && sudo apt dist-upgrade -y
 
@@ -57,23 +61,13 @@ sudo mkdir -pm755 /etc/apt/keyrings
 sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 sudo rm /etc/apt/sources.list.d/winehq*
 codename=$(lsb_release -sc)
-sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/ubuntu/dists/${codename}/winehq-${codename}.sources"
+distro=$(lsb_release -si | awk '{print tolower($0)}')
+sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/${distro}/dists/${codename}/winehq-${codename}.sources"
 sudo apt -y update
 sudo apt install --install-recommends wine-staging -y
 
-# AppImage Launcher
-wget -O /tmp/appimagelauncher.deb -c https://github.com/TheAssassin/AppImageLauncher/releases/download/v2.2.0/appimagelauncher_2.2.0-travis995.0f91801.bionic_amd64.deb
-sudo dpkg -i /tmp/appimagelauncher.deb
-sudo apt install -fy
-rm /tmp/appimagelauncher.deb
-sudo apt install -y libfuse2
-
 # Software found in repositories
 sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap -y
-
-# Amfora
-sudo wget -O /usr/bin/amfora -c "https://github.com/makeworld-the-better-one/amfora/releases/download/v1.9.2/amfora_1.9.2_linux_64-bit"
-sudo chmod +x /usr/bin/amfora
 
 # Element
 sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
@@ -85,6 +79,19 @@ sudo apt install element-desktop -y
 echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
 sudo apt update
 sudo apt install notion-app -y
+
+# Vivaldi
+wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo apt-key add -
+echo "deb https://repo.vivaldi.com/archive/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list
+sudo apt update
+sudo apt install vivaldi-stable -y
+
+# koyu.space Repo
+echo "deb [trusted=yes] https://repo.koyu.space/ /" | sudo tee /etc/apt/sources.list.d/koyu.space.list
+sudo apt update
+
+# koyu.space Repo Software
+sudo apt install mullvad-vpn ungoogled-chromium deemix-gui rpi-imager discord packettracer -y
 
 # Snaps or Flatpaks
 if ! command -v snap &> /dev/null
