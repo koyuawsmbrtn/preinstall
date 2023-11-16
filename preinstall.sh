@@ -70,7 +70,7 @@ sudo apt update
 sudo apt install element-desktop -y
 
 # Notion
-echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
+echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/apt/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
 sudo apt update
 sudo apt install notion-app -y
 
@@ -81,7 +81,7 @@ sudo apt install -fy
 rm /tmp/chrome.deb
 
 # koyu.space Repo
-echo "deb [trusted=yes] https://repo.koyu.space/ /" | sudo tee /etc/apt/sources.list.d/koyu.space.list
+echo "deb [trusted=yes] https://repo.koyu.space/apt/ /" | sudo tee /etc/apt/sources.list.d/koyu.space.list
 sudo apt update
 
 # koyu.space Repo Software
