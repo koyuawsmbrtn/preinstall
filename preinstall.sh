@@ -49,12 +49,6 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
-# Discord
-wget -O /tmp/discord.deb -c "https://discord.com/api/download?platform=linux&format=deb"
-sudo dpkg -i /tmp/discord.deb
-sudo apt install -fy
-rm /tmp/discord.deb
-
 # WineHQ
 sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
@@ -80,18 +74,18 @@ echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /et
 sudo apt update
 sudo apt install notion-app -y
 
-# Vivaldi
-wget -qO- https://repo.vivaldi.com/archive/linux_signing_key.pub | sudo apt-key add -
-echo "deb https://repo.vivaldi.com/archive/deb/ stable main" | sudo tee /etc/apt/sources.list.d/vivaldi.list
-sudo apt update
-sudo apt install vivaldi-stable -y
+# Chrome
+wget -O /tmp/chrome.deb -c "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+sudo dpkg -i /tmp/chrome.deb
+sudo apt install -fy
+rm /tmp/chrome.deb
 
 # koyu.space Repo
 echo "deb [trusted=yes] https://repo.koyu.space/ /" | sudo tee /etc/apt/sources.list.d/koyu.space.list
 sudo apt update
 
 # koyu.space Repo Software
-sudo apt install mullvad-vpn ungoogled-chromium deemix-gui rpi-imager discord packettracer -y
+sudo apt install mullvad-vpn deemix-gui rpi-imager discord packettracer bbzcloud -y
 
 # Snaps or Flatpaks
 if ! command -v snap &> /dev/null
