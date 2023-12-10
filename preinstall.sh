@@ -85,7 +85,7 @@ echo "deb [trusted=yes] https://repo.koyu.space/apt/ /" | sudo tee /etc/apt/sour
 sudo apt update
 
 # koyu.space Repo Software
-sudo apt install mullvad-vpn deemix-gui rpi-imager discord packettracer bbzcloud -y
+sudo apt install mullvad-vpn rpi-imager discord -y
 
 # Snaps or Flatpaks
 if ! command -v snap &> /dev/null
