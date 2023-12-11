@@ -98,12 +98,12 @@ then
   flatpak update -y
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak update -y
-  flatpak install bitwarden -y
+  flatpak install bitwarden spotify -y
 else
   sudo snap refresh
   sleep 3
   sudo snap refresh
-  sudo snap install bitwarden
+  sudo snap install bitwarden spotify
 fi
 
 # Autostart
