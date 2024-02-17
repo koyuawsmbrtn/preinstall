@@ -19,7 +19,7 @@ gparted
 curl
 plocate
 transmission-gtk
-p7zip-full
+p7zip
 ttf-firacode
 jre17-openjdk
 ffmpeg
@@ -33,3 +33,5 @@ visual-studio-code-bin
 spotify
 bitwarden
 rclone
+ntfs-3g
+exfat-utils
