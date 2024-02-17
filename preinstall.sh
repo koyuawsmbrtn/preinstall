@@ -68,12 +68,6 @@ echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /et
 sudo apt update
 sudo apt install notion-app -y
 
-# Chrome
-wget -O /tmp/chrome.deb -c "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-sudo dpkg -i /tmp/chrome.deb
-sudo apt install -fy
-rm /tmp/chrome.deb
-
 # koyu.space Repo
 echo "deb [trusted=yes] https://repo.koyu.space/apt/ /" | sudo tee /etc/apt/sources.list.d/koyu.space.list
 sudo apt update
