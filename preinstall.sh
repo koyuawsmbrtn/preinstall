@@ -68,17 +68,10 @@ echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /et
 sudo apt update
 sudo apt install notion-app -y
 
-# koyu.space Repo
-echo "deb [trusted=yes] https://repo.koyu.space/apt/ /" | sudo tee /etc/apt/sources.list.d/koyu.space.list
-sudo apt update
-
 # Mullvad
 sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
 echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
 sudo apt install mullvad-vpn -y
-
-# koyu.space Repo Software
-sudo apt install rpi-imager discord -y
 
 # Snaps or Flatpaks
 if ! command -v snap &> /dev/null
@@ -91,12 +84,12 @@ then
   flatpak update -y
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak update -y
-  flatpak install bitwarden spotify -y
+  flatpak install bitwarden spotify discord -y
 else
   sudo snap refresh
   sleep 3
   sudo snap refresh
-  sudo snap install bitwarden spotify
+  sudo snap install bitwarden spotify discord
 fi
 
 # Autostart
