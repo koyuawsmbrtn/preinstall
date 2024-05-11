@@ -21,10 +21,11 @@ transmission-gtk
 p7zip
 ttf-firacode
 jre17-openjdk
+jre8-openjdk
 ffmpeg
 zsh
 mailcap
-dino
+gajim
 notion-app-electron
 mullvad-vpn-bin
 visual-studio-code-bin
@@ -33,8 +34,8 @@ bitwarden
 rclone
 ntfs-3g
 exfat-utils
-extension-manager
 ttf-ms-win11-auto
 downgrade
 discord
-google-chrome
+firefox
+firefox-i18n-de
