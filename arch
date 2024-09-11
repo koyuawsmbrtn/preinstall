@@ -25,11 +25,12 @@ jre8-openjdk
 ffmpeg
 zsh
 mailcap
-gajim
+element-desktop
 notion-app-electron
 mullvad-vpn-bin
 visual-studio-code-bin
-spotify
+jellyfin-media-player
+bluesky
 bitwarden
 rclone
 ntfs-3g
@@ -39,3 +40,6 @@ downgrade
 discord
 firefox
 firefox-i18n-de
+telegram-desktop
+signal-desktop
+signal-in-tray
