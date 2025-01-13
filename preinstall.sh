@@ -61,17 +61,26 @@ sudo apt -y update
 sudo apt install --install-recommends wine-staging -y
 
 # Software found in repositories
-sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap gajim libarchive-tools -y
-
-# Notion
-echo "deb [trusted=yes] https://apt.fury.io/notion-repackaged/ /" | sudo tee /etc/apt/sources.list.d/notion-repackaged.list
-sudo apt update
-sudo apt install notion-app -y
+sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic gimp inkscape vlc weechat git gparted curl mlocate transmission-gtk p7zip-full libreoffice-style-breeze fonts-firacode hugo ffmpeg zsh mailcap libarchive-tools -y
 
 # Mullvad
 sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
 echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
 sudo apt install mullvad-vpn -y
+
+# Element
+‍sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
+sudo apt update
+sudo apt install element-desktop -y
+
+# Signal
+wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
+cat signal-desktop-keyring.gpg | sudo tee /usr/share/keyrings/signal-desktop-keyring.gpg > /dev/null
+rm signal-desktop-keyring.gpg
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] https://updates.signal.org/desktop/apt xenial main' | sudo tee /etc/apt/sources.list.d/signal-xenial.list
+sudo apt update
+sudo apt install signal-desktop -y
 
 # Snaps or Flatpaks
 if ! command -v snap &> /dev/null
@@ -84,12 +93,12 @@ then
   flatpak update -y
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak update -y
-  flatpak install bitwarden spotify discord -y
+  flatpak install bitwarden spotify discord telegram -y
 else
   sudo snap refresh
   sleep 3
   sudo snap refresh
-  sudo snap install bitwarden spotify discord
+  sudo snap install bitwarden spotify discord telegram-desktop
 fi
 
 # Autostart
