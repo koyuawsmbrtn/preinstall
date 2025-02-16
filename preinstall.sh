@@ -54,9 +54,7 @@ sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
 sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 sudo rm /etc/apt/sources.list.d/winehq*
-codename=$(lsb_release -sc)
-distro=$(lsb_release -si | awk '{print tolower($0)}')
-sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/${distro}/dists/${codename}/winehq-${codename}.sources"
+sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources"
 sudo apt -y update
 sudo apt install --install-recommends wine-staging -y
 
@@ -65,14 +63,8 @@ sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic 
 
 # Mullvad
 sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
-echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable jammy main" | sudo tee /etc/apt/sources.list.d/mullvad.list
 sudo apt install mullvad-vpn -y
-
-# Element
-‍sudo wget -O /usr/share/keyrings/element-io-archive-keyring.gpg https://packages.element.io/debian/element-io-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/element-io-archive-keyring.gpg] https://packages.element.io/debian/ default main" | sudo tee /etc/apt/sources.list.d/element-io.list
-sudo apt update
-sudo apt install element-desktop -y
 
 # Signal
 wget -O- https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor > signal-desktop-keyring.gpg
