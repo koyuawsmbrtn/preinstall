@@ -49,6 +49,12 @@ sudo dpkg -i /tmp/code.deb
 sudo apt install -fy
 rm /tmp/code.deb
 
+# Discord
+wget -O /tmp/discord.deb -c "https://discord.com/api/download?platform=linux&format=deb"
+sudo dpkg -i /tmp/discord.deb
+sudo apt install -fy
+rm /tmp/discord.deb
+
 # WineHQ
 sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
@@ -85,7 +91,7 @@ then
   flatpak update -y
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak update -y
-  flatpak install bitwarden spotify discord telegram -y
+  flatpak install com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian -y
 else
   sudo snap refresh
   sleep 3
