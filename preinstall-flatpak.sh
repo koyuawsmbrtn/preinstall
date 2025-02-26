@@ -30,7 +30,7 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 flatpak update -y
 
 # Install applications via Flatpak
-flatpak install --system flathub com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian com.visualstudio.code com.discordapp.Discord org.gimp.GIMP org.inkscape.Inkscape org.videolan.VLC org.libreoffice.LibreOffice org.mozilla.firefox com.github.tchx84.Flatseal it.mijorus.gearlever org.telegram.desktop org.localsend.localsend_app de.schmidhuberj.DieBahn de.schmidhuberj.tubefeeder org.nickvision.tubeconverter io.github.thetumultuousunicornofdarkness.cpu-x -y
+flatpak install --system flathub com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian com.visualstudio.code com.discordapp.Discord org.gimp.GIMP org.inkscape.Inkscape org.videolan.VLC org.libreoffice.LibreOffice org.mozilla.firefox com.github.tchx84.Flatseal it.mijorus.gearlever org.telegram.desktop org.localsend.localsend_app de.schmidhuberj.DieBahn de.schmidhuberj.tubefeeder org.nickvision.tubeconverter io.github.thetumultuousunicornofdarkness.cpu-x app.zen_browser.zen -y
 
 # Printing post-install steps
 echo -e

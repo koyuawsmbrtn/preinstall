@@ -91,7 +91,7 @@ then
   flatpak update -y
   sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
   flatpak update -y
-  flatpak install com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian -y
+  flatpak install com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian app.zen_browser.zen -y
 else
   sudo snap refresh
   sleep 3
