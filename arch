@@ -25,7 +25,6 @@ jre8-openjdk
 ffmpeg
 zsh
 mailcap
-notion-app-electron
 mullvad-vpn-bin
 visual-studio-code-bin
 bluesky
@@ -35,9 +34,10 @@ ntfs-3g
 exfat-utils
 ttf-ms-win11-auto
 downgrade
-discord
-firefox
-firefox-i18n-de
 telegram-desktop
 signal-desktop
 signal-in-tray
+spotify
+vesktop-bin
+obsidian
+zen-browser-bin
