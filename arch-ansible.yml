@@ -1,0 +1,237 @@
+---
+- name: Install Arch with GNOME and optional Nvidia drivers
+  hosts: localhost
+  become: yes
+  vars_prompt:
+    - name: install_nvidia
+      prompt: "Do you want to install the open-source Nvidia drivers? (yes/no)"
+      private: no
+
+  tasks:
+    - name: Update system
+      pacman:
+        update_cache: yes
+
+    - name: Enable multilib repository
+      lineinfile:
+        path: /etc/pacman.conf
+        line: "[multilib]"
+        insertafter: "#\[multilib\]"
+        state: present
+
+    - name: Enable multilib repository (Include)
+      lineinfile:
+        path: /etc/pacman.conf
+        line: "Include = /etc/pacman.d/mirrorlist"
+        insertafter: "\[multilib\]"
+        state: present
+
+    - name: Enable colored pacman output
+      lineinfile:
+        path: /etc/pacman.conf
+        regexp: "^#Color"
+        line: "Color"
+        state: present
+
+    - name: Enable parallel downloads for pacman
+      lineinfile:
+        path: /etc/pacman.conf
+        regexp: "^#ParallelDownloads"
+        line: "ParallelDownloads = 5"
+        state: present
+
+    - name: Install base packages
+      pacman:
+        name:
+          - base
+          - linux
+          - linux-firmware
+          - sudo
+          - nano
+          - networkmanager
+          - git
+          - ansible
+          - gnome
+          - gnome-tweaks
+          - gnome-shell-extensions
+          - gnome-shell-extension-appindicator
+          - cups
+          - cups-browsed
+          - avahi
+          - gnome-bluetooth
+          - curl
+          - wget
+          - bash-completion
+          - base-devel
+        state: present
+
+    - name: Remove bloat
+      pacman:
+        name:
+          - gnome-software
+          - gnome-software-packagekit-plugin
+          - gnome-music
+          - gnome-photos
+          - gnome-calendar
+          - gnome-weather
+          - gnome-maps
+          - gnome-characters
+          - gnome-sound-recorder
+          - cheese
+          - gnome-clocks
+          - transmission-gtk
+          - gnome-system-monitor
+        state: absent
+
+    - name: Install yay manually as user
+      become: no
+      shell: |
+        git clone https://aur.archlinux.org/yay.git /tmp/yay
+        cd /tmp/yay
+        makepkg -sifc --noconfirm
+      args:
+        executable: /bin/bash
+
+    - name: Install Nvidia open-source drivers (if selected)
+      pacman:
+        name:
+          - nvidia-open-dkms
+          - nvidia-utils
+          - lib32-nvidia-utils
+        state: present
+      when: install_nvidia == 'yes'
+
+    - name: Enable NetworkManager
+      systemd:
+        name: NetworkManager
+        enabled: yes
+        state: started
+
+    - name: Enable CUPS for printer support
+      systemd:
+        name: cups
+        enabled: yes
+        state: started
+
+    - name: Enable Avahi daemon
+      systemd:
+        name: avahi-daemon
+        enabled: yes
+        state: started
+
+    - name: Install additional packages from file using yay
+      become: no
+      shell: "yay -S --noconfirm --needed $(cat arch)"
+      args:
+        executable: /bin/bash
+
+    - name: Install GNOME Shell Extensions as user
+      become: no
+      shell: "gnome-extensions install {{ item }}"
+      loop:
+        - app-hider@lynith.dev
+        - caffeine@patapon.info
+        - AlphabeticalAppGrid@stuarthayhurst
+        - dash-to-dock@micxgx.gmail.com
+      args:
+        executable: /bin/bash
+
+    - name: Enable GNOME Shell Extensions as user
+      become: no
+      shell: "gnome-extensions enable {{ item }}"
+      loop:
+        - app-hider@lynith.dev
+        - caffeine@patapon.info
+        - AlphabeticalAppGrid@stuarthayhurst
+        - dash-to-dock@micxgx.gmail.com
+        - appindicatorsupport@rgcjonas.gmail.com
+      args:
+        executable: /bin/bash
+
+    - name: Configure dconf to hide specific apps
+      become: no
+      dconf:
+        key: "/org/gnome/shell/extensions/app-hider/hidden-apps"
+        value: "['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'qv4l2.desktop', 'qvidcap.desktop', 'signal-tray.desktop', 'electron34.desktop', 'org.gnome.Extensions.desktop', 'htop.desktop', 'weechat.desktop', 'vim.desktop', 'chromium.desktop', 'WebApp-blackcom7358.desktop', 'Team Fortress 2.desktop', 'THE FINALS.desktop', 'Overwatch 2.desktop', 'Palia.desktop', 'org.gnome.Sysprof.desktop', 'cmake-gui.desktop', 'google-chrome.desktop', 'hplip.desktop', 'hp-uiscan.desktop', 'cups.desktop', 'steam.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop', 'nm-connection-editor.desktop', 'fluid.desktop']"
+
+    - name: Configure Dash to Dock
+      become: no
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/disable-overview-on-startup"
+        value: "true"
+    - name: Configure Dash to Dock
+      become: no
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/click-action"
+        value: "minimize"
+    - name: Configure Dash to Dock
+      become: no
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/show-mounts"
+        value: "false"
+    - name: Configure Dash to Dock
+      become: no
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/show-trash"
+        value: "false"
+    - name: Configure Dash to Dock
+      become: no
+      dconf:
+        key: "/org/gnome/shell/extensions/dash-to-dock/hot-keys"
+        value: "false"
+
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
+        value: "['<Shift><Alt>Tab']"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/switch-windows"
+        value: "['<Alt>Tab']"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward"
+        value: "[]"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/switch-applications"
+        value: "[]"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/show-desktop"
+        value: "['<Super>d']"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/home"
+        value: "['<Super>e']"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+        value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        value: "{'name': 'Terminal', 'command': 'gnome-terminal', 'binding': '<Super>t'}"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+        value: "{'name': 'Mission Center', 'command': 'missioncenter', 'binding': '<Ctrl><Alt>t'}"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/logout"
+        value: "[]"
+    - name: Configure keyboard shortcuts
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/www"
+        value: "['<Super>b']"
