@@ -50,6 +50,7 @@
           - base
           - linux
           - linux-firmware
+          - linux-headers
           - sudo
           - nano
           - networkmanager
