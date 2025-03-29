@@ -71,14 +71,7 @@
           - gnome-software
           - gnome-software-packagekit-plugin
           - gnome-music
-          - gnome-photos
-          - gnome-calendar
-          - gnome-weather
-          - gnome-maps
-          - gnome-characters
           - gnome-sound-recorder
-          - cheese
-          - gnome-clocks
           - transmission-gtk
           - gnome-system-monitor
         state: absent
@@ -106,6 +99,25 @@
         name: NetworkManager
         enabled: yes
         state: started
+    
+    - name: Enable Bluetooth
+      systemd:
+        name: bluetooth
+        enabled: yes
+        state: started
+
+    - name: Enable GDM
+      systemd:
+        name: gdm
+        enabled: yes
+        state: started
+    
+    - name: Force Wayland for GDM
+      lineinfile:
+        path: /etc/gdm/custom.conf
+        regexp: "^#WaylandEnable=false"
+        line: "WaylandEnable=true"
+        state: present
 
     - name: Enable CUPS for printer support
       systemd:
