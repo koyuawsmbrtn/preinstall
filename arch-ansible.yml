@@ -185,14 +185,21 @@
       args:
         executable: /bin/bash
 
+    - name: Install GNOME Extension Installer
+      become: yes
+      shell: |
+        mkdir -p /usr/local/bin
+        curl -L https://raw.githubusercontent.com/jasonmb626/gnome-shell-extension-installer/master/gnome-shell-extension-installer > /usr/local/bin/gnome-shell-extension-installer
+        chmod +x /usr/local/bin/gnome-shell-extension-installer
+
     - name: Install GNOME Shell Extensions as user
       become: no
-      shell: "gnome-extensions install {{ item }}"
+      shell: "gnome-shell-extension-installer {{ item }} --yes"
       loop:
-        - app-hider@lynith.dev
-        - caffeine@patapon.info
-        - AlphabeticalAppGrid@stuarthayhurst
-        - dash-to-dock@micxgx.gmail.com
+        - 307
+        - 5895
+        - 517
+        - 4269
       args:
         executable: /bin/bash
 
