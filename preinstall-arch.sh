@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo pacman -S ansible --noconfirm
+ansible-playbook -i inventory --ask-become-pass arch-ansible.yml
