@@ -336,11 +336,6 @@
     - name: Configure keyboard shortcuts
       become: no
       dconf:
-        key: "/org/gnome/settings-daemon/plugins/media-keys/logout"
-        value: "[]"
-    - name: Configure keyboard shortcuts
-      become: no
-      dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/www"
         value: "['<Super>b']"
     
