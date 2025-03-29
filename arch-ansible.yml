@@ -301,7 +301,7 @@
       become: no
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
-        value: "'<Super>t'"
+        value: "'<Control><Alt>t'"
 
     - name: Configure Mission Center keyboard shortcut
       become: no
@@ -319,7 +319,7 @@
       become: no
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
-        value: "'<Control><Alt>t'"
+        value: "'<Control><Alt><Delete>'"
     - name: Configure keyboard shortcuts
       become: no
       dconf:
@@ -330,12 +330,3 @@
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/www"
         value: "['<Super>b']"
-
-    - name: Reboot system
-      reboot:
-        msg: "Rebooting system..."
-        pre_reboot_delay: 5
-        post_reboot_delay: 10
-        test_command: whoami
-        test_ssh: no
-        reboot_timeout: 300
