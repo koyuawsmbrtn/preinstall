@@ -11,20 +11,16 @@
       private: no
 
   tasks:
-    - name: Update system
-      pacman:
-        update_cache: yes
-        upgrade: yes
-
-    - name: Enable multilib repository
+    - name: Configure pacman
       become: yes
       shell: cp pacman.conf /etc/pacman.conf
       args:
         executable: /bin/bash
 
-    - name: Update package database
+    - name: Update system
       pacman:
         update_cache: yes
+        upgrade: yes
 
     - name: Configure makepkg
       become: yes
