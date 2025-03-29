@@ -129,7 +129,7 @@
           lineinfile:
             path: /etc/gdm/custom.conf
             line: "AutomaticLoginEnable=true"
-            insertafter: "\[daemon\]"
+            insertafter: "[daemon]"
             state: present
         - name: Set up autologin user for TV mode
           lineinfile:
