@@ -137,7 +137,7 @@
             line: "AutomaticLogin={{ lookup('file', '/tmp/user') }}"
             insertafter: "AutomaticLoginEnable=true"
             state: present
-        - name: Set up autologin session for TV mode: Remove temporary files
+        - name: Remove temporary files
           shell: rm -f /tmp/user
           args:
             executable: /bin/bash
