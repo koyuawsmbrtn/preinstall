@@ -34,20 +34,6 @@
       args:
         executable: /bin/bash
 
-    - name: Enable colored pacman output
-      lineinfile:
-        path: /etc/pacman.conf
-        regexp: "^#Color"
-        line: "Color"
-        state: present
-
-    - name: Enable parallel downloads for pacman
-      lineinfile:
-        path: /etc/pacman.conf
-        regexp: "^#ParallelDownloads"
-        line: "ParallelDownloads = 5"
-        state: present
-
     - name: Install base packages
       pacman:
         name:
