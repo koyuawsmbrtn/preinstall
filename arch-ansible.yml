@@ -17,18 +17,26 @@
         upgrade: yes
 
     - name: Enable multilib repository
-      lineinfile:
-        path: /etc/pacman.conf
-        line: "[multilib]"
-        insertafter: '#[multilib]'
-        state: present
+      become: yes
+      shell: cp pacman.conf /etc/pacman.conf
+      args:
+        executable: /bin/bash
 
-    - name: Enable multilib repository (Include)
-      lineinfile:
-        path: /etc/pacman.conf
-        line: "Include = /etc/pacman.d/mirrorlist"
-        insertafter: "[multilib]"
-        state: present
+    - name: Update package database
+      pacman:
+        update_cache: yes
+
+    - name: Configure makepkg
+      become: yes
+      shell: cp makepkg.conf /etc/makepkg.conf
+      args:
+        executable: /bin/bash
+
+    - name: Fix archinstall lockout issue
+      become: yes
+      shell: cp faillock.conf /etc/security/faillock.conf
+      args:
+        executable: /bin/bash
 
     - name: Enable colored pacman output
       lineinfile:
@@ -158,6 +166,12 @@
         enabled: yes
         state: started
     
+    - name: Disable NetworkManager-wait-online
+      systemd:
+        name: NetworkManager-wait-online
+        enabled: no
+        state: stopped
+    
     - name: Enable Bluetooth
       systemd:
         name: bluetooth
@@ -168,7 +182,7 @@
       systemd:
         name: gdm
         enabled: yes
-        state: started
+        state: stopped
     
     - name: Force Wayland for GDM
       lineinfile:
