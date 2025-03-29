@@ -132,7 +132,7 @@
         - name: Set up autologin for TV mode
           lineinfile:
             path: /etc/gdm/custom.conf
-            regexp: "^[daemon]"
+            insertafter: "WaylandEnable=true"
             line: "AutomaticLoginEnable=true"
             state: present
         - name: Set up autologin user for TV mode
