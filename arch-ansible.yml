@@ -106,6 +106,7 @@
           args:
             executable: /bin/bash
         - name: Copy .desktop file for TV mode
+          become: no
           copy:
             src: tv-mode.desktop
             dest: ~/.local/share/applications/tv-mode.desktop
@@ -116,12 +117,14 @@
           args:
             executable: /bin/bash
         - name: Set up TV mode
+          become: no
           shell: |
             mkdir -p ~/.config/autostart
             cp ~/.local/share/applications/tv-mode.desktop ~/.config/autostart/
           args:
             executable: /bin/bash
         - name: Autologin for TV mode
+          become: no
           shell: echo $USER > /tmp/user
           args:
             executable: /bin/bash
@@ -230,7 +233,7 @@
       become: no
       dconf:
         key: "/org/gnome/shell/extensions/dash-to-dock/click-action"
-        value: "minimize"
+        value: "'minimize'"
     - name: Configure Dash to Dock
       become: no
       dconf:
@@ -282,16 +285,41 @@
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
         value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
-    - name: Configure keyboard shortcuts
+    - name: Configure Terminal keyboard shortcut
       become: no
       dconf:
-        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-        value: "{'name': 'Terminal', 'command': 'gnome-terminal', 'binding': '<Super>t'}"
-    - name: Configure keyboard shortcuts
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+        value: "'Terminal'"
+
+    - name: Configure Terminal command
       become: no
       dconf:
-        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
-        value: "{'name': 'Mission Center', 'command': 'missioncenter', 'binding': '<Ctrl><Alt>t'}"
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+        value: "'gnome-terminal'"
+
+    - name: Configure Terminal binding
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+        value: "'<Super>t'"
+
+    - name: Configure Mission Center keyboard shortcut
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name"
+        value: "'Mission Center'"
+
+    - name: Configure Mission Center command
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command"
+        value: "'missioncenter'"
+
+    - name: Configure Mission Center binding
+      become: no
+      dconf:
+        key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
+        value: "'<Control><Alt>t'"
     - name: Configure keyboard shortcuts
       become: no
       dconf:
