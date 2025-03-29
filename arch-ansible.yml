@@ -6,11 +6,15 @@
     - name: install_nvidia
       prompt: "Do you want to install the open-source Nvidia drivers? (yes/no)"
       private: no
+    - name: tv_mode
+      prompt: "Do you want to set up TV mode? (yes/no)"
+      private: no
 
   tasks:
     - name: Update system
       pacman:
         update_cache: yes
+        upgrade: yes
 
     - name: Enable multilib repository
       lineinfile:
@@ -93,6 +97,50 @@
           - lib32-nvidia-utils
         state: present
       when: install_nvidia == 'yes'
+    
+    - name: Set up TV mode (if selected)
+      when: tv_mode == 'yes'
+      block:
+        - name: Install Google Chrome
+          shell: "yay -S --noconfirm --needed google-chrome"
+          args:
+            executable: /bin/bash
+        - name: Copy .desktop file for TV mode
+          copy:
+            src: tv-mode.desktop
+            dest: ~/.local/share/applications/tv-mode.desktop
+        - name: Set up icon for TV mode
+          become: yes
+          shell: |
+            cp television.png /usr/share/pixmaps/television.png
+          args:
+            executable: /bin/bash
+        - name: Set up TV mode
+          shell: |
+            mkdir -p ~/.config/autostart
+            cp ~/.local/share/applications/tv-mode.desktop ~/.config/autostart/
+          args:
+            executable: /bin/bash
+        - name: Autologin for TV mode
+          shell: echo $USER > /tmp/user
+          args:
+            executable: /bin/bash
+        - name: Set up autologin for TV mode
+          lineinfile:
+            path: /etc/gdm/custom.conf
+            line: "AutomaticLoginEnable=true"
+            insertafter: "\[daemon\]"
+            state: present
+        - name: Set up autologin user for TV mode
+          lineinfile:
+            path: /etc/gdm/custom.conf
+            line: "AutomaticLogin={{ lookup('file', '/tmp/user') }}"
+            insertafter: "AutomaticLoginEnable=true"
+            state: present
+        - name: Set up autologin session for TV mode: Remove temporary files
+          shell: rm -f /tmp/user
+          args:
+            executable: /bin/bash
 
     - name: Enable NetworkManager
       systemd:
