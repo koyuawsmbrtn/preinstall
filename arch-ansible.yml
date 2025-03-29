@@ -286,11 +286,6 @@
     - name: Configure keyboard shortcuts
       become: no
       dconf:
-        key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward"
-        value: "[]"
-    - name: Configure keyboard shortcuts
-      become: no
-      dconf:
         key: "/org/gnome/desktop/wm/keybindings/switch-applications"
         value: "[]"
     - name: Configure keyboard shortcuts
