@@ -298,7 +298,7 @@
       become: no
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-        value: "'gnome-terminal'"
+        value: "'kgx'"
 
     - name: Configure Terminal binding
       become: no
@@ -322,7 +322,7 @@
       become: no
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
-        value: "'<Control><Alt><Delete>'"
+        value: "'<Control><Alt>Delete'"
     - name: Configure keyboard shortcuts
       become: no
       dconf:
