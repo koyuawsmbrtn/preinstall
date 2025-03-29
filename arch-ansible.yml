@@ -355,7 +355,6 @@
     
     - name: Configure autostart
       become: no
-      shell: |
-        cp -r autostart ~/.config/
+      shell: cp -r autostart ~/.config/
       args:
         executable: /bin/bash
