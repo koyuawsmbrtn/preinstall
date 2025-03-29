@@ -194,6 +194,19 @@
       shell: "yay -S --noconfirm --needed $(cat arch)"
       args:
         executable: /bin/bash
+    
+    - name: Install additional packages using flatpak
+      become: no
+      shell: "flatpak install -y flathub {{ item }}"
+      loop:
+        - org.gtk.Gtk3theme.adw-gtk3-dark
+        - com.mattjakeman.ExtensionManager
+    
+    - name: Enable dark mode
+      become: no
+      shell: gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+      args:
+        executable: /bin/bash
 
     - name: Install GNOME Extension Installer
       become: yes
@@ -339,3 +352,10 @@
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/www"
         value: "['<Super>b']"
+    
+    - name: Configure autostart
+      become: no
+      shell: |
+        cp -r autostart ~/.config/
+      args:
+        executable: /bin/bash
