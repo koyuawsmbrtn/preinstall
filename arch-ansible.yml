@@ -20,14 +20,14 @@
       lineinfile:
         path: /etc/pacman.conf
         line: "[multilib]"
-        insertafter: "#\[multilib\]"
+        insertafter: '#[multilib]'
         state: present
 
     - name: Enable multilib repository (Include)
       lineinfile:
         path: /etc/pacman.conf
         line: "Include = /etc/pacman.d/mirrorlist"
-        insertafter: "\[multilib\]"
+        insertafter: "[multilib]"
         state: present
 
     - name: Enable colored pacman output
