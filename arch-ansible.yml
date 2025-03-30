@@ -219,6 +219,7 @@
         - 517
         - 4269
         - 6727
+        - 4805
       args:
         executable: /bin/bash
 
@@ -232,6 +233,7 @@
         - dash-to-dock@micxgx.gmail.com
         - appindicatorsupport@rgcjonas.gmail.com
         - hide-cursor@elcste.com
+        - panel-corners@aunetx
       args:
         executable: /bin/bash
 
