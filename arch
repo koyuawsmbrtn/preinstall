@@ -37,7 +37,6 @@ telegram-desktop
 spotify
 vesktop-bin
 obsidian
-google-chrome
 mission-center
 file-roller
 impression
@@ -47,6 +46,11 @@ steam-native-runtime
 heroic-games-launcher
 fragments
 localsend
-google-chrome
 solaar
 adw-gtk-theme
+chromium
+chromium-widevine
+chromium-extension-ublock-origin-lite
+chromium-bypass-paywalls-clean
+bitwarden-chromium
+chromium-extension-ruffle-nightly
