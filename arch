@@ -33,7 +33,6 @@ exfat-utils
 ttf-ms-win11-auto
 downgrade
 telegram-desktop
-spotify
 vesktop-bin
 obsidian
 mission-center
@@ -53,3 +52,4 @@ chromium-extension-ublock-origin-lite
 chromium-bypass-paywalls-clean
 bitwarden-chromium
 chromium-extension-ruffle-nightly
+spotube-bin
