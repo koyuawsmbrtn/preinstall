@@ -241,7 +241,7 @@
       become: no
       dconf:
         key: "/org/gnome/shell/extensions/app-hider/hidden-apps"
-        value: "['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'qv4l2.desktop', 'qvidcap.desktop', 'signal-tray.desktop', 'electron34.desktop', 'org.gnome.Extensions.desktop', 'htop.desktop', 'weechat.desktop', 'vim.desktop', 'Team Fortress 2.desktop', 'THE FINALS.desktop', 'Overwatch 2.desktop', 'Palia.desktop', 'org.gnome.Sysprof.desktop', 'cmake-gui.desktop', 'hplip.desktop', 'hp-uiscan.desktop', 'cups.desktop', 'steam.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop', 'nm-connection-editor.desktop', 'fluid.desktop', 'electron31.desktop', 'org.pulseaudio.pavucontrol.desktop']"
+        value: "['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'qv4l2.desktop', 'qvidcap.desktop', 'signal-tray.desktop', 'electron34.desktop', 'electron35.desktop', 'org.gnome.Extensions.desktop', 'htop.desktop', 'weechat.desktop', 'vim.desktop', 'Team Fortress 2.desktop', 'THE FINALS.desktop', 'Overwatch 2.desktop', 'Palia.desktop', 'org.gnome.Sysprof.desktop', 'cmake-gui.desktop', 'hplip.desktop', 'hp-uiscan.desktop', 'cups.desktop', 'steam.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop', 'nm-connection-editor.desktop', 'fluid.desktop', 'electron31.desktop', 'org.pulseaudio.pavucontrol.desktop']"
 
     - name: Configure Dash to Dock
       become: no
