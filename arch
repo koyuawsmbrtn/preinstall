@@ -46,10 +46,5 @@ fragments
 localsend
 solaar
 adw-gtk-theme
-chromium
-chromium-widevine
-chromium-extension-ublock-origin-lite
-chromium-bypass-paywalls-clean
-bitwarden-chromium
-chromium-extension-ruffle-nightly
+google-chrome
 spotube-bin
