@@ -272,7 +272,7 @@
       become: no
       dconf:
         key: "/org/gnome/shell/favorite-apps"
-        value: "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'spotify.desktop', 'obsidian.desktop', 'bitwarden.desktop', 'signal-desktop.desktop', 'org.telegram.desktop.desktop', 'vesktop.desktop', 'org.gnome.Calendar.desktop', 'steam-native.desktop', 'code.desktop', 'org.gnome.Console.desktop']"
+        value: "['org.gnome.Nautilus.desktop', 'google-chrome.desktop', 'spotify.desktop', 'obsidian.desktop', 'bitwarden.desktop', 'signal-desktop.desktop', 'org.telegram.desktop.desktop', 'io.github.equicord.equibop.desktop', 'org.gnome.Calendar.desktop', 'steam-native.desktop', 'code.desktop', 'org.gnome.Console.desktop']"
 
     - name: Configure keyboard shortcuts
       become: no
