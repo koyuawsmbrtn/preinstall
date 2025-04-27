@@ -235,6 +235,7 @@
         - appindicatorsupport@rgcjonas.gmail.com
         - hide-cursor@elcste.com
         - panel-corners@aunetx
+        - smile-extension@mijorus.it
       args:
         executable: /bin/bash
 
