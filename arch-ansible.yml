@@ -220,6 +220,7 @@
         - 4269
         - 6727
         - 4805
+        - 6096
       args:
         executable: /bin/bash
 
