@@ -195,7 +195,6 @@
       shell: "flatpak install -y flathub {{ item }}"
       loop:
         - org.gtk.Gtk3theme.adw-gtk3-dark
-        - com.mattjakeman.ExtensionManager
     
     - name: Enable dark mode
       become: no
