@@ -220,6 +220,7 @@
         - 6727
         - 4805
         - 6096
+        - 5410
       args:
         executable: /bin/bash
 
@@ -235,6 +236,7 @@
         - hide-cursor@elcste.com
         - panel-corners@aunetx
         - smile-extension@mijorus.it
+        - grand-theft-focus@zalckos.github.com
       args:
         executable: /bin/bash
 
