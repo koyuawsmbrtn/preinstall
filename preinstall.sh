@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#    Copyright (C) 2021-2023 koyu
+#    Copyright (C) 2021-2025 koyu
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ sudo apt install -fy
 rm /tmp/code.deb
 
 # Discord
-wget -O /tmp/discord.deb -c "https://discord.com/api/download?platform=linux&format=deb"
+wget -O /tmp/discord.deb -c "https://github.com/Equicord/Equibop/releases/latest/download/Equibop-linux-amd64.deb"
 sudo dpkg -i /tmp/discord.deb
 sudo apt install -fy
 rm /tmp/discord.deb
@@ -96,7 +96,7 @@ else
   sudo snap refresh
   sleep 3
   sudo snap refresh
-  sudo snap install bitwarden spotify discord telegram-desktop
+  sudo snap install bitwarden spotify telegram-desktop
 fi
 
 # Autostart

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#    Copyright (C) 2021-2023 koyu
+#    Copyright (C) 2021-2025 koyu
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flat
 flatpak update -y
 
 # Install applications via Flatpak
-flatpak install --system flathub com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian com.visualstudio.code com.discordapp.Discord org.gimp.GIMP org.inkscape.Inkscape org.videolan.VLC org.libreoffice.LibreOffice org.mozilla.firefox com.github.tchx84.Flatseal it.mijorus.gearlever org.telegram.desktop org.localsend.localsend_app de.schmidhuberj.DieBahn org.signal.Signal org.nickvision.tubeconverter io.github.thetumultuousunicornofdarkness.cpu-x app.zen_browser.zen -y
+flatpak install --system flathub com.bitwarden.desktop com.spotify.Client org.telegram.desktop md.obsidian.Obsidian com.visualstudio.code io.github.equicord.equibop org.gimp.GIMP org.inkscape.Inkscape org.videolan.VLC org.libreoffice.LibreOffice org.mozilla.firefox com.github.tchx84.Flatseal it.mijorus.gearlever org.telegram.desktop org.localsend.localsend_app de.schmidhuberj.DieBahn org.signal.Signal org.nickvision.tubeconverter io.github.thetumultuousunicornofdarkness.cpu-x app.zen_browser.zen -y
 
 # Printing post-install steps
 echo -e
