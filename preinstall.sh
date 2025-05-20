@@ -60,7 +60,7 @@ sudo dpkg --add-architecture i386
 sudo mkdir -pm755 /etc/apt/keyrings
 sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 sudo rm /etc/apt/sources.list.d/winehq*
-sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources"
+sudo wget -nc -P /etc/apt/sources.list.d/ "https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources"
 sudo apt -y update
 sudo apt install --install-recommends wine-staging -y
 
@@ -69,7 +69,8 @@ sudo apt install --install-recommends openjdk-17-jre pavucontrol cpu-x synaptic 
 
 # Mullvad
 sudo curl -fsSLo /usr/share/keyrings/mullvad-keyring.asc https://repository.mullvad.net/deb/mullvad-keyring.asc
-echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable jammy main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+echo "deb [signed-by=/usr/share/keyrings/mullvad-keyring.asc arch=$( dpkg --print-architecture )] https://repository.mullvad.net/deb/stable noble main" | sudo tee /etc/apt/sources.list.d/mullvad.list
+sudo apt update
 sudo apt install mullvad-vpn -y
 
 # Signal
