@@ -97,7 +97,7 @@ else
   sudo snap refresh
   sleep 3
   sudo snap refresh
-  sudo snap install bitwarden spotify telegram-desktop
+  sudo snap install bitwarden spotify telegram-desktop obsidian
 fi
 
 # Autostart
