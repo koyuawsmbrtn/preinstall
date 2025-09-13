@@ -75,7 +75,7 @@ steam
 
 2. **Run the playbook** (Ansible will be installed automatically if needed):
    ```bash
-   ansible-playbook arch-ansible.yml
+   ./preinstall.sh
    ```
 
 3. **Follow the prompts** for:
