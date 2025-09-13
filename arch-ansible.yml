@@ -323,11 +323,22 @@
       dconf:
         key: "/org/gnome/shell/extensions/dash-to-dock/hot-keys"
         value: "false"
+    - name: Read favorites from file
+      become: no
+      slurp:
+        src: favorites.txt
+      register: favorites_file
+
+    - name: Parse favorites list
+      become: no
+      set_fact:
+        favorites_list: "{{ favorites_file.content | b64decode | split('\n') | select('match', '^[^#].*') | select('string') | list }}"
+
     - name: Configure Dash to Dock
       become: no
       dconf:
         key: "/org/gnome/shell/favorite-apps"
-        value: "{{ lookup('file', 'favorites.txt').splitlines() | select('match', '^[^#].*') | select('string') | map('regex_replace', '^(.+)$', \"'\\1'\") | list }}"
+        value: "{{ favorites_list }}"
 
     - name: Configure keyboard shortcuts
       become: no
