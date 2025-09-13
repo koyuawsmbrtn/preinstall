@@ -42,7 +42,7 @@ ansible-galaxy collection install -r requirements.yml
 
 # Run the main Ansible playbook
 echo "Running Arch Linux setup playbook..."
-ansible-playbook arch-ansible.yml
+ansible-playbook arch-ansible.yml --ask-become-pass
 
 echo -e
 echo "Done!"
