@@ -25,7 +25,7 @@ ffmpeg
 zsh
 mailcap
 mullvad-vpn-bin
-visual-studio-code-bin
+gearlever
 rclone
 ntfs-3g
 exfat-utils
@@ -44,9 +44,11 @@ fragments
 localsend
 solaar
 adw-gtk-theme
-spotify
+tidal-hifi
 extension-manager
 signal-desktop
 discord
 floorp-bin
 pamac
+element-desktop
+vmware-workstation
