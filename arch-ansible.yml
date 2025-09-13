@@ -214,7 +214,7 @@
         update_cache: yes
       become: yes
       become_user: aur_builder
-      loop: "{{ lookup('file', 'arch').splitlines() }}"
+      loop: "{{ lookup('file', 'packages.txt').splitlines() }}"
       when: item is not none and item | length > 0
       retries: 3
       delay: 10
