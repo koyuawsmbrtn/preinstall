@@ -9,9 +9,6 @@
     - name: tv_mode
       prompt: "Do you want to set up TV mode? (yes/no)"
       private: no
-    - name: sudo_password
-      prompt: "Enter sudo password for yay commands"
-      private: yes
 
   tasks:
     - name: Adding Chaotic-AUR repo
@@ -46,12 +43,6 @@
       args:
         executable: /bin/bash
 
-    - name: Create temporary sudo password file
-      become: no
-      copy:
-        content: "{{ sudo_password }}"
-        dest: /tmp/sudo_pass
-        mode: '0600'
 
     - name: Install base packages
       pacman:
@@ -91,6 +82,13 @@
           - gnome-system-monitor
         state: absent
 
+    - name: Configure yay for non-interactive use
+      become: no
+      shell: |
+        yay --save --batchinstall --noconfirm --cleanafter --removemake
+      args:
+        executable: /bin/bash
+
     - name: Install Nvidia open-source drivers (if selected)
       pacman:
         name:
@@ -105,7 +103,7 @@
       block:
         - name: Install Google Chrome
           become: no
-          shell: "echo '{{ sudo_password }}' | sudo -S yay -S --noconfirm --needed google-chrome"
+          shell: "yay -S --noconfirm --needed google-chrome"
           args:
             executable: /bin/bash
         - name: Copy .desktop file for TV mode
@@ -198,7 +196,7 @@
 
     - name: Install additional packages from file using yay
       become: no
-      shell: "echo '{{ sudo_password }}' | sudo -S yay -S --noconfirm --needed {{ item }}"
+      shell: "yay -S --noconfirm --needed {{ item }}"
       args:
         executable: /bin/bash
       loop: "{{ lookup('file', 'arch').splitlines() }}"
@@ -362,8 +360,3 @@
       args:
         executable: /bin/bash
 
-    - name: Remove temporary sudo password file
-      become: no
-      file:
-        path: /tmp/sudo_pass
-        state: absent
