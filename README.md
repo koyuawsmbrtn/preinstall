@@ -60,10 +60,6 @@ code.desktop
    - Nvidia driver installation
    - TV mode setup
 
-5. **After installation** (for desktop settings):
-   - Log out and log back in to GNOME
-   - Or restart the system to ensure all settings are applied
-
 ## Customization
 
 ### Package Lists
