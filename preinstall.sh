@@ -27,6 +27,18 @@ if ! command -v pacman &> /dev/null; then
     exit 1
 fi
 
+# Check if this is a clean installation
+if command -v gnome-session &> /dev/null; then
+    echo "Warning: GNOME appears to be already installed."
+    echo "This script is designed for clean Arch Linux installations using archinstall minimal profile."
+    echo "Continue anyway? (y/N)"
+    read -r response
+    if [[ ! "$response" =~ ^[Yy]$ ]]; then
+        echo "Exiting. Please use archinstall with minimal profile for best results."
+        exit 1
+    fi
+fi
+
 echo "Detected Arch Linux system. Proceeding with setup..."
 echo -e
 

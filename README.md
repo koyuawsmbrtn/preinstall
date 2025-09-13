@@ -4,12 +4,11 @@ Ansible playbook and scripts for setting up a fresh Arch Linux installation with
 
 ## Features
 
-- Automated Arch Linux system configuration
-- GNOME desktop environment setup with extensions
-- AUR package management using `kewlfft.aur` collection
-- Customizable favorites and desktop settings
-- Optional Nvidia driver installation
-- TV mode setup for media center use
+- **Complete GNOME Desktop Setup**: Installs and configures GNOME from scratch
+- **AUR Package Management**: Uses `kewlfft.aur` collection for reliable AUR package installation
+- **Custom Desktop Configuration**: Background, favorites, extensions, and keyboard shortcuts
+- **Optional Features**: Nvidia driver installation and TV mode setup
+- **Idempotent**: Safe to run multiple times, won't break existing configurations
 
 ## Configuration Files
 
@@ -31,32 +30,39 @@ code.desktop
 
 ## Prerequisites
 
-1. **Fresh Arch Linux Installation**: This assumes you have a basic Arch Linux system installed
-2. **Ansible**: Install Ansible on your system:
-   ```bash
-   sudo pacman -S ansible
-   ```
+1. **Clean Arch Linux Installation**: This requires a fresh Arch Linux system installed using:
+   - **Recommended**: `archinstall` with the **minimal profile** (includes base, linux, linux-firmware, networkmanager)
+   - Alternative: Manual Arch installation with base system only
+   - **Do not use** if you have existing desktop environments (GNOME, KDE, XFCE, etc.) or custom configurations
+
+2. **Ansible**: Will be installed automatically by the playbook if not present
 3. **AUR Helper**: The playbook uses `yay` as the AUR helper (installed automatically)
 
-## Quick Start
+## Installation Process
 
+### Step 1: Install Arch Linux
+1. **Boot from Arch Linux ISO**
+2. **Run archinstall**:
+   ```bash
+   archinstall
+   ```
+3. **Select "minimal" profile** (this ensures a clean base system)
+4. **Configure your system** (users, disk, network, etc.)
+5. **Complete the installation**
+
+### Step 2: Setup Desktop Environment
 1. **Clone or download this repository**:
    ```bash
    git clone <repository-url>
    cd preinstall
    ```
 
-2. **Install Ansible collections**:
-   ```bash
-   ansible-galaxy collection install -r requirements.yml
-   ```
-
-3. **Run the playbook**:
+2. **Run the playbook** (Ansible will be installed automatically if needed):
    ```bash
    ansible-playbook arch-ansible.yml
    ```
 
-4. **Follow the prompts** for:
+3. **Follow the prompts** for:
    - Nvidia driver installation
    - TV mode setup
 
