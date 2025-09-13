@@ -1,4 +1,4 @@
-# GNOME Shell Favorites Configuration
+# GNOME Shell Favourites Configuration
 # Add one application desktop file per line
 # You can find desktop files in /usr/share/applications/ or ~/.local/share/applications/
 # 
@@ -8,7 +8,7 @@
 # - code.desktop (VS Code)
 # - org.telegram.desktop.desktop (Telegram)
 #
-# Current favorites:
+# Current favourites:
 org.gnome.Nautilus.desktop
 floorp.desktop
 org.gnome.Evolution.desktop

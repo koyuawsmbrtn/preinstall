@@ -12,7 +12,7 @@ Ansible playbook and scripts for setting up a fresh Arch Linux installation with
 
 ## Configuration Files
 
-### `favorites.txt`
+### `favourites.txt`
 This file contains the GNOME Shell favorites (dock applications) that will be configured. You can easily customize this by editing the file:
 
 - Add one application desktop file per line
@@ -22,10 +22,26 @@ This file contains the GNOME Shell favorites (dock applications) that will be co
 
 Example:
 ```
-# My favorite applications
+# My favourite applications
 org.gnome.Nautilus.desktop
 firefox.desktop
 code.desktop
+```
+
+### `packages.txt`
+This file contains AUR packages that will be installed using yay. You can customize this by editing the file:
+
+- Add one package name per line
+- Lines starting with `#` are comments and will be ignored
+- Empty lines are ignored
+- These packages will be installed from the AUR (Arch User Repository)
+
+Example:
+```
+# Essential applications
+firefox
+discord
+steam
 ```
 
 ## Prerequisites
@@ -69,8 +85,8 @@ code.desktop
 ## Customization
 
 ### Package Lists
-- **`arch`**: Contains AUR packages to install
-- **`favorites.txt`**: GNOME Shell favorites configuration
+- **`packages.txt`**: Contains AUR packages to install
+- **`favourites.txt`**: GNOME Shell favorites configuration
 - **`background.jpg`**: Custom background image
 
 ### Desktop Settings
