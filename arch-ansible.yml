@@ -96,13 +96,6 @@
           - gnome-system-monitor
         state: absent
 
-    - name: Configure yay for non-interactive use
-      become: no
-      shell: |
-        yay --save --batchinstall --noconfirm --cleanafter --removemake
-      args:
-        executable: /bin/bash
-
     - name: Install Nvidia open-source drivers (if selected)
       pacman:
         name:
