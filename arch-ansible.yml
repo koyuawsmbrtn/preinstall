@@ -247,12 +247,16 @@
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
         value: "'file:///usr/share/backgrounds/background.jpg'"
+      when: ansible_env.HOME is defined
+      ignore_errors: yes
 
     - name: Set desktop background options
       become: no
       dconf:
         key: "/org/gnome/desktop/background/picture-options"
         value: "'zoom'"
+      when: ansible_env.HOME is defined
+      ignore_errors: yes
 
     - name: Install GNOME Extension Installer
       become: yes
@@ -417,4 +421,14 @@
       shell: cp -r autostart ~/.config/
       args:
         executable: /bin/bash
+
+    - name: Set desktop background (user session)
+      become: no
+      shell: |
+        gsettings set org.gnome.desktop.background picture-uri 'file:///usr/share/backgrounds/background.jpg'
+        gsettings set org.gnome.desktop.background picture-options 'zoom'
+      args:
+        executable: /bin/bash
+      ignore_errors: yes
+      when: ansible_env.HOME is defined
 
