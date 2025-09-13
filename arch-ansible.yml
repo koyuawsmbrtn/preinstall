@@ -242,10 +242,18 @@
       args:
         executable: /bin/bash
 
-    - name: Set desktop background
+    - name: Set desktop background (light mode)
       become: no
       dconf:
         key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///usr/share/backgrounds/background.jpg'"
+      when: ansible_env.HOME is defined
+      ignore_errors: yes
+
+    - name: Set desktop background (dark mode)
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri-dark"
         value: "'file:///usr/share/backgrounds/background.jpg'"
       when: ansible_env.HOME is defined
       ignore_errors: yes
