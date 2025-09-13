@@ -9,6 +9,9 @@
     - name: tv_mode
       prompt: "Do you want to set up TV mode? (yes/no)"
       private: no
+    - name: sudo_password
+      prompt: "Enter sudo password for yay commands"
+      private: yes
 
   tasks:
     - name: Adding Chaotic-AUR repo
@@ -46,7 +49,7 @@
     - name: Create temporary sudo password file
       become: no
       copy:
-        content: "{{ ansible_become_password }}"
+        content: "{{ sudo_password }}"
         dest: /tmp/sudo_pass
         mode: '0600'
         owner: "{{ ansible_user_id }}"
@@ -104,7 +107,7 @@
       block:
         - name: Install Google Chrome
           become: no
-          shell: "echo '{{ ansible_become_password }}' | sudo -S yay -S --noconfirm --needed google-chrome"
+          shell: "echo '{{ sudo_password }}' | sudo -S yay -S --noconfirm --needed google-chrome"
           args:
             executable: /bin/bash
         - name: Copy .desktop file for TV mode
@@ -197,7 +200,7 @@
 
     - name: Install additional packages from file using yay
       become: no
-      shell: "echo '{{ ansible_become_password }}' | sudo -S yay -S --noconfirm --needed {{ item }}"
+      shell: "echo '{{ sudo_password }}' | sudo -S yay -S --noconfirm --needed {{ item }}"
       args:
         executable: /bin/bash
       loop: "{{ lookup('file', 'arch').splitlines() }}"
