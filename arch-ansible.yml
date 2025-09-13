@@ -94,9 +94,9 @@
       when: tv_mode == 'yes'
       block:
         - name: Install Google Chrome
-          shell: "yay -S --noconfirm --needed google-chrome"
-          args:
-            executable: /bin/bash
+          yay:
+            name: google-chrome
+            state: present
         - name: Copy .desktop file for TV mode
           become: no
           copy:
@@ -187,9 +187,10 @@
 
     - name: Install additional packages from file using yay
       become: no
-      shell: "yay -S --noconfirm --needed $(cat arch)"
-      args:
-        executable: /bin/bash
+      yay:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ lookup('file', 'arch').splitlines() }}"
     
     - name: Install additional packages using flatpak
       become: no
