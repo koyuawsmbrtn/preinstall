@@ -1,0 +1,66 @@
+# GNOME Shell Hidden Apps Configuration
+# Add one application desktop file per line
+# You can find desktop files in /usr/share/applications/ or ~/.local/share/applications/
+# 
+# Examples:
+# - org.gnome.Extensions.desktop (GNOME Extensions)
+# - htop.desktop (System Monitor)
+# - steam.desktop (Steam)
+#
+# Current hidden apps:
+bssh.desktop
+bvnc.desktop
+avahi-discover.desktop
+qv4l2.desktop
+qvidcap.desktop
+signal-tray.desktop
+electron34.desktop
+electron35.desktop
+org.gnome.Extensions.desktop
+htop.desktop
+weechat.desktop
+vim.desktop
+Team Fortress 2.desktop
+THE FINALS.desktop
+Overwatch 2.desktop
+Palia.desktop
+org.gnome.Sysprof.desktop
+cmake-gui.desktop
+hplip.desktop
+hp-uiscan.desktop
+cups.desktop
+steam.desktop
+assistant.desktop
+qdbusviewer.desktop
+linguist.desktop
+designer.desktop
+nm-connection-editor.desktop
+fluid.desktop
+electron31.desktop
+org.pulseaudio.pavucontrol.desktop
+jconsole-jdk17-temurin.desktop
+jshell-jdk17-temurin.desktop
+mpv.desktop
+protontricks.desktop
+fish.desktop
+cachyos-hello.desktop
+org.cachyos.KernelManager.desktop
+cachyos-pi.desktop
+btrfs-assistant.desktop
+btop.desktop
+Alacritty.desktop
+electron36.desktop
+io.github.cosmic_utils.Examine.desktop
+org.cachyos.scx-manager.desktop
+micro.desktop
+org.gnome.Epiphany.desktop
+winetricks.desktop
+org.gnome.Meld.desktop
+nvtop.desktop
+electron37.desktop
+vmware-netcfg.desktop
+wine-Programs-ISO to WBFS-Uninstall ISO to WBFS.desktop
+tidal-dl-ng.desktop
+ENA Dream BBQ.desktop
+Animalkind Playtest.desktop
+Celeste.desktop

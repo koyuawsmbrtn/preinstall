@@ -304,11 +304,48 @@
       args:
         executable: /bin/bash
 
+    - name: Read hidden apps from file
+      become: no
+      slurp:
+        src: hidden-apps.txt
+      register: hidden_apps_file
+
+    - name: Parse hidden apps list
+      become: no
+      set_fact:
+        hidden_apps_list: "{{ hidden_apps_file.content | b64decode | split('\n') | select('match', '^[^#].*') | select('string') | list }}"
+
     - name: Configure dconf to hide specific apps
       become: no
       dconf:
         key: "/org/gnome/shell/extensions/app-hider/hidden-apps"
-        value: "['bssh.desktop', 'bvnc.desktop', 'avahi-discover.desktop', 'qv4l2.desktop', 'qvidcap.desktop', 'signal-tray.desktop', 'electron34.desktop', 'electron35.desktop', 'org.gnome.Extensions.desktop', 'htop.desktop', 'weechat.desktop', 'vim.desktop', 'Team Fortress 2.desktop', 'THE FINALS.desktop', 'Overwatch 2.desktop', 'Palia.desktop', 'org.gnome.Sysprof.desktop', 'cmake-gui.desktop', 'hplip.desktop', 'hp-uiscan.desktop', 'cups.desktop', 'steam.desktop', 'assistant.desktop', 'qdbusviewer.desktop', 'linguist.desktop', 'designer.desktop', 'nm-connection-editor.desktop', 'fluid.desktop', 'electron31.desktop', 'org.pulseaudio.pavucontrol.desktop']"
+        value: "{{ hidden_apps_list }}"
+
+    - name: Create LibreOffice folder in app launcher
+      become: no
+      shell: |
+        mkdir -p ~/.local/share/desktop-directories
+        cat > ~/.local/share/desktop-directories/libreoffice-folder.directory << 'EOF'
+        [Desktop Entry]
+        Type=Directory
+        Name=LibreOffice
+        Comment=LibreOffice Office Suite
+        Icon=libreoffice-main
+        EOF
+        # Create user-local desktop entries for LibreOffice apps with folder category
+        mkdir -p ~/.local/share/applications
+        # Copy and modify LibreOffice applications to use the folder
+        for app in writer calc impress draw math base; do
+          if [ -f "/usr/share/applications/libreoffice-${app}.desktop" ]; then
+            cp "/usr/share/applications/libreoffice-${app}.desktop" ~/.local/share/applications/
+            sed -i 's/Categories=Office;/Categories=Office;X-GNOME-Application-Folder=libreoffice-folder;/' ~/.local/share/applications/libreoffice-${app}.desktop
+          fi
+        done
+        # Refresh desktop database
+        update-desktop-database ~/.local/share/applications 2>/dev/null || true
+      args:
+        executable: /bin/bash
+      ignore_errors: yes
 
     - name: Configure Dash to Dock
       become: no

@@ -44,6 +44,22 @@ discord
 steam
 ```
 
+### `hidden-apps.txt`
+This file contains applications that will be hidden from the GNOME application grid using the App Hider extension. You can customize this by editing the file:
+
+- Add one application desktop file per line
+- Lines starting with `#` are comments and will be ignored
+- Empty lines are ignored
+- Desktop files can be found in `/usr/share/applications/` or `~/.local/share/applications/`
+
+Example:
+```
+# System utilities to hide
+org.gnome.Extensions.desktop
+htop.desktop
+steam.desktop
+```
+
 ## Prerequisites
 
 1. **Clean Arch Linux Installation**: This requires a fresh Arch Linux system installed using:
@@ -84,18 +100,20 @@ steam
 
 ## Customization
 
-### Package Lists
+### Configuration Files
 - **`packages.txt`**: Contains AUR packages to install
 - **`favourites.txt`**: GNOME Shell favorites configuration
+- **`hidden-apps.txt`**: Applications to hide from the application grid
 - **`background.jpg`**: Custom background image
 
 ### Desktop Settings
 The playbook configures:
 - Dark theme with Adwaita GTK theme
-- Custom background image
+- Custom background image (for both light and dark modes)
 - GNOME Shell extensions
 - Keyboard shortcuts (including custom Terminal and Mission Center shortcuts)
 - Dash to Dock settings
+- LibreOffice folder in app launcher for better organization
 
 ### System Configuration
 - Chaotic-AUR repository setup
