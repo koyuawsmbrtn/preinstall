@@ -52,8 +52,6 @@
         content: "{{ sudo_password }}"
         dest: /tmp/sudo_pass
         mode: '0600'
-        owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_id }}"
 
     - name: Install base packages
       pacman:
