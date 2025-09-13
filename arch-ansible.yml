@@ -227,11 +227,32 @@
       loop:
         - org.gtk.Gtk3theme.adw-gtk3-dark
     
+    - name: Copy background image to system directory
+      become: yes
+      copy:
+        src: background.jpg
+        dest: /usr/share/backgrounds/background.jpg
+        mode: '0644'
+        owner: root
+        group: root
+
     - name: Enable dark mode
       become: no
       shell: gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark' && gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
       args:
         executable: /bin/bash
+
+    - name: Set desktop background
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/background/picture-uri"
+        value: "'file:///usr/share/backgrounds/background.jpg'"
+
+    - name: Set desktop background options
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/background/picture-options"
+        value: "'zoom'"
 
     - name: Install GNOME Extension Installer
       become: yes
