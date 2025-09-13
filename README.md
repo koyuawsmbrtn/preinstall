@@ -111,7 +111,16 @@ The playbook configures:
 - Dark theme with Adwaita GTK theme
 - Custom background image (for both light and dark modes)
 - GNOME Shell extensions
-- Keyboard shortcuts (including custom Terminal and Mission Center shortcuts)
+- Keyboard shortcuts:
+  - `Alt+Tab` - Switch windows
+  - `Shift+Alt+Tab` - Switch windows backward
+  - `Super+D` - Show desktop
+  - `Super+E` - Home folder
+  - `Super+B` - Web browser
+  - `Super+F` - Toggle fullscreen
+  - `Super+Q` - Close window
+  - `Ctrl+Alt+T` - Terminal
+  - `Super+Shift+M` - Mission Center
 - Dash to Dock settings
 - LibreOffice folder in app launcher for better organization
 

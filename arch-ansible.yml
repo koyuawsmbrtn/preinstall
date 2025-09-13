@@ -460,6 +460,12 @@
       dconf:
         key: "/org/gnome/desktop/wm/keybindings/toggle-fullscreen"
         value: "['<Super>f']"
+
+    - name: Configure window close shortcut
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/close"
+        value: "['<Super>q']"
     
     - name: Configure autostart
       become: no
