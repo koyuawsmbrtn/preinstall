@@ -375,7 +375,7 @@
     - name: Read favorites from file
       become: no
       slurp:
-        src: favorites.txt
+        src: favourites.txt
       register: favorites_file
 
     - name: Parse favorites list
