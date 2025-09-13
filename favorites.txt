@@ -1,0 +1,29 @@
+# GNOME Shell Favorites Configuration
+# Add one application desktop file per line
+# You can find desktop files in /usr/share/applications/ or ~/.local/share/applications/
+# 
+# Examples:
+# - org.gnome.Nautilus.desktop (Files)
+# - firefox.desktop (Firefox)
+# - code.desktop (VS Code)
+# - org.telegram.desktop.desktop (Telegram)
+#
+# Current favorites:
+org.gnome.Nautilus.desktop
+floorp.desktop
+org.gnome.Evolution.desktop
+tidal-hifi.desktop
+obsidian.desktop
+signal-desktop.desktop
+io.element.Element.desktop
+discord.desktop
+org.telegram.desktop.desktop
+org.gnome.Calendar.desktop
+steam-native.desktop
+io.itch.itch.desktop
+dolphin-emu.desktop
+chrome-lhedecbjcehgjijkmihhhfmdicbkkgkm-Default.desktop
+cursor.desktop
+vmware-workstation.desktop
+org.gnome.Settings.desktop
+org.gnome.Console.desktop

@@ -327,7 +327,7 @@
       become: no
       dconf:
         key: "/org/gnome/shell/favorite-apps"
-        value: "['org.gnome.Nautilus.desktop', 'floorp.desktop', 'org.gnome.Evolution.desktop', 'tidal-hifi.desktop', 'obsidian.desktop', 'signal-desktop.desktop', 'io.element.Element.desktop', 'discord.desktop', 'org.telegram.desktop.desktop', 'org.gnome.Calendar.desktop', 'steam-native.desktop', 'io.itch.itch.desktop', 'dolphin-emu.desktop', 'chrome-lhedecbjcehgjijkmihhhfmdicbkkgkm-Default.desktop', 'cursor.desktop', 'vmware-workstation.desktop', 'org.gnome.Settings.desktop', 'org.gnome.Console.desktop']"
+        value: "{{ lookup('file', 'favorites.txt').splitlines() | select('match', '^[^#].*') | select('string') | map('regex_replace', '^(.+)$', \"'\\1'\") | list }}"
 
     - name: Configure keyboard shortcuts
       become: no
@@ -388,12 +388,18 @@
       become: no
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding"
-        value: "'<Control><Alt>Delete'"
+        value: "'<Super><Shift>m'"
     - name: Configure keyboard shortcuts
       become: no
       dconf:
         key: "/org/gnome/settings-daemon/plugins/media-keys/www"
         value: "['<Super>b']"
+
+    - name: Configure fullscreen shortcut
+      become: no
+      dconf:
+        key: "/org/gnome/desktop/wm/keybindings/toggle-fullscreen"
+        value: "['<Super>f']"
     
     - name: Configure autostart
       become: no
