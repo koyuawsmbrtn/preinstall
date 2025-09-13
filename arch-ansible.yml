@@ -67,6 +67,7 @@
           - wget
           - bash-completion
           - base-devel
+          - yay
         state: present
 
     - name: Remove bloat
@@ -79,15 +80,6 @@
           - transmission-gtk
           - gnome-system-monitor
         state: absent
-
-    - name: Install yay manually as user
-      become: no
-      shell: |
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        cd /tmp/yay
-        makepkg -sifc --noconfirm
-      args:
-        executable: /bin/bash
 
     - name: Install Nvidia open-source drivers (if selected)
       pacman:
