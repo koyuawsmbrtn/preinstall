@@ -43,6 +43,15 @@
       args:
         executable: /bin/bash
 
+    - name: Create temporary sudo password file
+      become: no
+      copy:
+        content: "{{ ansible_become_password }}"
+        dest: /tmp/sudo_pass
+        mode: '0600'
+        owner: "{{ ansible_user_id }}"
+        group: "{{ ansible_user_id }}"
+
     - name: Install base packages
       pacman:
         name:
@@ -94,9 +103,10 @@
       when: tv_mode == 'yes'
       block:
         - name: Install Google Chrome
-          yay:
-            name: google-chrome
-            state: present
+          become: no
+          shell: "echo '{{ ansible_become_password }}' | sudo -S yay -S --noconfirm --needed google-chrome"
+          args:
+            executable: /bin/bash
         - name: Copy .desktop file for TV mode
           become: no
           copy:
@@ -187,9 +197,9 @@
 
     - name: Install additional packages from file using yay
       become: no
-      yay:
-        name: "{{ item }}"
-        state: present
+      shell: "echo '{{ ansible_become_password }}' | sudo -S yay -S --noconfirm --needed {{ item }}"
+      args:
+        executable: /bin/bash
       loop: "{{ lookup('file', 'arch').splitlines() }}"
     
     - name: Install additional packages using flatpak
@@ -350,3 +360,9 @@
       shell: cp -r autostart ~/.config/
       args:
         executable: /bin/bash
+
+    - name: Remove temporary sudo password file
+      become: no
+      file:
+        path: /tmp/sudo_pass
+        state: absent
