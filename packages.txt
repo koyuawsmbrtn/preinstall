@@ -52,3 +52,4 @@ floorp-bin
 pamac
 element-desktop
 vmware-workstation
+nextcloud-client
