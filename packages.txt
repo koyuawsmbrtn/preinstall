@@ -53,3 +53,4 @@ pamac
 element-desktop
 vmware-workstation
 nextcloud-client
+evolution
