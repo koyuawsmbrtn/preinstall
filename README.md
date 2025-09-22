@@ -1,3 +1,5 @@
+**Warning: GNOME is currently undergoing an update to version 49. This may cause temporary issues with certain extensions and configurations.**
+
 # Arch Linux Preinstall Scripts
 
 Ansible playbook and scripts for setting up a fresh Arch Linux installation with GNOME desktop environment and essential applications.
